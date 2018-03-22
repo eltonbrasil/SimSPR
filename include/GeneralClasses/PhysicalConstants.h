@@ -1,6 +1,12 @@
-#include <modules/Fresnel.cpp>
 #ifndef PHYSICALCONSTANTS_H
 #define PHYSICALCONSTANTS_H
+
+#define _USE_MATH_DEFINES
+
+#include <math.h>
+#include <iostream>
+
+#define PI_VALUE = 3.14159265358979323846  /* pi */
 
 class PhysicalConstants
 { 

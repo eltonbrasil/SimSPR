@@ -1,6 +1,9 @@
+#ifndef FRESNEL_H
+#define FRESNEL_H
 
-#include <tests/main.cpp>
-class RefractiveIndices
+#include <PhysicalConstants.h>
+
+class Fresnel
 {
 private:
 	int n_air = 1;
