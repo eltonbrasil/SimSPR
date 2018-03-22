@@ -1,13 +1,11 @@
-
-#include <Library/Library.h>
-
+#include <modules/Fresnel.cpp>
 #ifndef PHYSICALCONSTANTS_H
 #define PHYSICALCONSTANTS_H
 
 class PhysicalConstants
 { 
 
-public:
+private:
 	
 	// c is the light`s velocity (m/s)
 	constexpr static double c = 299792458;
