@@ -2,11 +2,8 @@
 
 int main (){
 
-	Fresnel f;
-	PhysicalConstants p;
-	// RefractiveIndices obj;
-
-	std::cout << "Air refractive indice is "<<p.u_0; 
-
+	std::cout << "Everything is okay!"; 
+	std::cout << "\n\n";
+	obj_Fresnel.SnellTerms();
 	return 0;
 }
