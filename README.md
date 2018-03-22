@@ -1,1 +1,1 @@
-# SimSPR
+# Surface Plasmon Resonance Simulator - SimSPR
