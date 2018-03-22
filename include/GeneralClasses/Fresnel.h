@@ -1,7 +1,7 @@
 #ifndef FRESNEL_H
 #define FRESNEL_H
 
-#include <include/GeneralClasses/PhysicalConstants.h>
+#include <PhysicalConstants.h>
 
 class Fresnel
 {
