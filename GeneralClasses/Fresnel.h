@@ -1,4 +1,3 @@
-#include "PhysicalConstants.h"
 #define FRESNEL_H
 
 class Fresnel

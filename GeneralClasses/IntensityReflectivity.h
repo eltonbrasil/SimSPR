@@ -1,19 +1,20 @@
-#include "Fresnel.h"
 #define INTENSITYREFLECTIVITY_H
 
 class IntensityReflectivity
 {
-private:
+public:
 	float Rp; // Intensity reflection for P-polarized wave
 	float Rs; // Intensity reflection for S-polarized wave
 	float Tp; // Intensity transmissivities coefficient for P-polarized wave
 	float Ts; // Intensity transmissivities coefficient for S-polarized wave
 public:
-	float IntensityReflection (int);
-	float IntensityTransmissivity (int);
+	void IntensityReflection (int);
+	void IntensityTransmissivity ();
 }obj_Intensity;
 
-float IntensityReflectivity::IntensityReflection (int theta_i){
+void IntensityReflectivity::IntensityReflection (int theta_i){
+
+	obj_Fresnel.FresnelTermP(theta_i);
 
 	float aux_1 = (pow(tan(theta_i - obj_Fresnel.theta_t), 2));
 	float aux_2 = (pow(tan(theta_i + obj_Fresnel.theta_t), 2));
@@ -24,9 +25,12 @@ float IntensityReflectivity::IntensityReflection (int theta_i){
 	float term_2 = (pow(sin(theta_i + obj_Fresnel.theta_t), 2));
 	
 	obj_Intensity.Rs = term_1 / term_2;
-
-	return (obj_Intensity.Rs);
 }
 
+void IntensityReflectivity::IntensityTransmissivity (){
+
+	obj_Intensity.Tp = 1 - obj_Intensity.Rp;
+	obj_Intensity.Ts = 1 - obj_Intensity.Rs;
+}
 
 

@@ -1,4 +1,4 @@
-#include "IntensityReflectivity.h"
+#include "IncludeFile.h"
 
 int main (){	
 
@@ -7,11 +7,11 @@ int main (){
 
 	for(float theta_i = 0; theta_i <= 360; theta_i++){
 		
-		obj_Fresnel.FresnelTermP(theta_i);
-		float aux_variable = obj_Intensity.IntensityReflection(theta_i);
+		obj_Intensity.IntensityReflection(theta_i);
+		obj_Intensity.IntensityTransmissivity();
 
-		std::cout << theta_i << "\t\t" << aux_variable;
-		std::cout << "\n\n";		
+		std::cout << obj_Intensity.Tp;
+		std::cout << "\n\n";
 	}		
 
 	return 0;
