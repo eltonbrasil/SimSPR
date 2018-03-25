@@ -3,41 +3,50 @@
 
 class Fresnel
 {
-private:
+public:
+
 	float n_1 = 1; // Air refractive index
 	float n_2 = 0.27732; // Gold refractive index
 
-	float mu_1 = 1; // Air relative magnetic permeability
-	float mu_2 = 0.99996; // Gold relative magnetic permeability 
+	float u_1 = 1; // Air relative magnetic permeability
+	float u_2 = 0.99996; // Gold relative magnetic permeability 
 
-	double theta_t = 0; // Transmitted Angle
-	double rp_wave, tp_wave;  // Fresnel terms for the P-polarized wave
-	double theta_i; // Incident Angle
+	float rp_wave, tp_wave;  // Fresnel terms for the P-polarized wave
+	float rs_wave, ts_wave;  // Fresnel terms for the S-polarized wave
+
 public:
 	
-	void FresnelTermP(float, float);
-	void FresnelTermS(float, float);
-	int SnellTerms();
-
-}obj_Fresnel;
-
-void Fresnel::FresnelTermP(float theta_i, float theta_t){
+	float FresnelTermP(int); // Fresnel equations in their general form for the P_polarized wave
+	float FresnelTermS(int); // Fresnel equations in their general form for the S_polarized wave
 	
-}
+}obj_Fresnel; // Fresnel class object
 
-void Fresnel::FresnelTermS(float theta_i, float theta_t){
+float Fresnel::FresnelTermP(int theta_i){
 	
-}
+		float theta_t = asin((obj_Fresnel.n_1/obj_Fresnel.n_2)*sin(theta_i*(M_PI/180)));
 
-int Fresnel::SnellTerms(){
-	
-	for(obj_Fresnel.theta_i = 0; obj_Fresnel.theta_i <= 360; obj_Fresnel.theta_i ++){ //  in Degrees
-		obj_Fresnel.theta_t = (obj_Fresnel.n_1/obj_Fresnel.n_2)*sin(obj_Fresnel.theta_i*(M_PI/180));
+		float term_1 = (obj_Fresnel.n_1/(obj_Fresnel.u_1*obj_Const.u_0))*cos(theta_t);
+		float term_2 = (obj_Fresnel.n_2/(obj_Fresnel.u_2*obj_Const.u_0))*cos(theta_i);
 
-		std::cout<<asin(obj_Fresnel.theta_t)*(180/M_PI); // Results in degrees
-		std::cout<<"\n\n";
-	}
+		obj_Fresnel.rp_wave = (term_1 - term_2) / (term_1 + term_2);
+
+		obj_Fresnel.tp_wave = 2*(obj_Fresnel.n_1/(obj_Fresnel.u_1*obj_Const.u_0))*cos(theta_i) / (term_1 + term_2);
 		
-	return(asin(obj_Fresnel.theta_t)*(180/M_PI));
+	return (0);
 }
+
+float Fresnel::FresnelTermS(int theta_i){
+	
+		float theta_t = asin((obj_Fresnel.n_1/obj_Fresnel.n_2)*sin(theta_i*(M_PI/180)));
+
+		float term_1 = (obj_Fresnel.n_1/(obj_Fresnel.u_1*obj_Const.u_0))*cos(theta_i);
+		float term_2 = (obj_Fresnel.n_2/(obj_Fresnel.u_2*obj_Const.u_0))*cos(theta_t);
+
+		obj_Fresnel.rs_wave = (term_1 - term_2) / (term_1 + term_2);
+
+		obj_Fresnel.ts_wave = 2*(obj_Fresnel.n_1/(obj_Fresnel.u_1*obj_Const.u_0))*cos(theta_i) / (term_1 + term_2);
+		
+	return (obj_Fresnel.rs_wave);
+}
+
 

@@ -20,6 +20,6 @@ public:
 	// e_0 is the electric permitivity of free space (F/m)
 	constexpr static double e_0 = 8.854 * pow(10,-12);
  
-}obj_const; 
+}obj_Const; 
 
 
