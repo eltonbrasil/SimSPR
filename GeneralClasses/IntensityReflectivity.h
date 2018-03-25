@@ -8,11 +8,11 @@ public:
 	float Tp; // Intensity transmissivities coefficient for P-polarized wave
 	float Ts; // Intensity transmissivities coefficient for S-polarized wave
 public:
-	void IntensityReflection (int);
+	void IntensityReflection (double);
 	void IntensityTransmissivity ();
 }obj_Intensity;
 
-void IntensityReflectivity::IntensityReflection (int theta_i){
+void IntensityReflectivity::IntensityReflection (double theta_i){
 
 	obj_Fresnel.FresnelTermP(theta_i);
 
