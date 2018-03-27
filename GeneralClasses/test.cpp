@@ -4,10 +4,10 @@ using namespace std;
 int main (){	
 
 	ofstream data_Rp;
-	data_Rp.open("output_Rp.txt");
+	data_Rp.open("Rp.txt");
 
 	ofstream data_Rs;
-	data_Rs.open("output_Rs.txt");
+	data_Rs.open("Rs.txt");
 	
 	cout <<
 	"-------------------------------------------------------------------------------" << "\n"

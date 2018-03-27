@@ -5,10 +5,10 @@ class Fresnel
 public:
 
 	float n_1 = 1; // Air refractive index
-	float n_2 = 1.5268; // Glass refractive index
+	float n_2 = 1.1978; // Aluminium (Al) refractive index
 
 	float u_1 = 1; // Air relative magnetic permeability
-	float u_2 = 0.99996; // Glass relative magnetic permeability 
+	float u_2 = 1.000021; // Aluminium (Al) relative magnetic permeability 
 
 	double theta_t; // Transmitted angle
 
