@@ -1,4 +1,4 @@
-#include "IncludeFile.h"
+#include "../GeneralClasses/IncludeFile.h"
 
 using namespace std;
 int main (){	
