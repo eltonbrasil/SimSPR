@@ -1,16 +1,21 @@
 #define INCLUDEFILE_H
 
-// Include Libraries
+// Include math libraries
 
+#include <complex>
 #include <math.h>
+#include <cmath>
+
+// Include general libraries
+
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
-#include <iomanip>
-#include <unistd.h>
+
+using namespace std;
 
 // Include Files
 
 #include "PhysicalConstants.h"
 #include "Fresnel.h"
 #include "IntensityReflectivity.h"
+#include "../SPR/SingleLayerSPR.h"

@@ -10,6 +10,7 @@ public:
 
 	void IntensityReflection (double);
 	void IntensityTransmissivity ();
+	
 }obj_Intensity;
 
 void IntensityReflectivity::IntensityReflection (double theta_i){
