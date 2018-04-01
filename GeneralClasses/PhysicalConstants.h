@@ -18,11 +18,9 @@ public:
 	constexpr static double e_0 = 8.854 * pow(10,-12);
 
 	// The incident light wavelength (nm)
-	constexpr static double lambda = 546.1 * pow(10, -9);
+	constexpr static double lambda = 532 * pow(10, -9);
 
-	// Thickness of layers (m)
-	constexpr static double d = 50 * pow(10, -9); 
+	// Thickness of layers (nm)
+	constexpr static double d = 50 * pow(10,-9); 
  
 }obj_Const; 
-
-

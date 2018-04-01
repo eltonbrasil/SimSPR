@@ -17,5 +17,4 @@ using namespace std;
 
 #include "PhysicalConstants.h"
 #include "Fresnel.h"
-#include "IntensityReflectivity.h"
 #include "../SPR/SingleLayerSPR.h"

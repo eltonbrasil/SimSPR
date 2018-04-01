@@ -3,9 +3,10 @@
 class Fresnel
 {
 public:
+	
 	float n_1 = 1; // Air refractive index
 	float n_2 = 1.5168; // Glass refractive index
-	
+
 	float u_1 = 1; // Air relative magnetic permeability
 	float u_2 = 1; // Glass relative magnetic permeability 
 
@@ -15,6 +16,7 @@ public:
 	double rs_wave, ts_wave;  // Fresnel terms for the S-polarized wave
 
 public:
+
 	void FresnelTermP(double); // Fresnel equations in their general form for the P_polarized wave
 	void FresnelTermS(double); // Fresnel equations in their general form for the S_polarized wave
 	
@@ -43,5 +45,3 @@ void Fresnel::FresnelTermS(double theta_i){
 
 	ts_wave = 2*(n_1/(u_1*obj_Const.u_0))*cos(theta_i*(M_PI/180))/(term_1 + term_2);
 }
-
-

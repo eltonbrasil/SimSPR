@@ -3,7 +3,7 @@
 
 reset
 
-set title "Interface Air - Glass"
+set title "Interface Air - Silicon (Si)"
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Intensity reflectivity"
 

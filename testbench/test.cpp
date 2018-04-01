@@ -15,7 +15,7 @@ int main (){
 	
 	for(theta_i = 0; theta_i <= 90; theta_i++){
 		
-		output << theta_i << "\t\t" << obj_SLayer.ParamSPR(theta_i) << endl;
+		output << theta_i << "\t\t" << obj_SLayer.PhaseShift(theta_i) << endl;
 	}
 
 	output.close();

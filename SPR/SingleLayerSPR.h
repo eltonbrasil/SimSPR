@@ -1,47 +1,65 @@
 #define SINGLELAYERSPR_H
 
-class SLayerSPR{
+class SingleLayerSPR{
 
-public:
-
-	std::complex<double> Reflectance;
-	std::complex<double> Transmittance;
-
-	double beta;
-	double param;
-		
-public:
-
-	double ParamSPR(double);
-	double PhaseShift(double);
+private:
 	
+	std::complex<double> n_Gold; 	// Gold refractive index 
+	std::complex<double> n_Si; 	 	// Silicon refractive index 
+	std::complex<double> beta;	 	// Phase shift Beta describes in each layer of thickness
+	std::complex<double> rp_wave;	// Fresnel terms for the P-polarized wave
+
+	double theta_t;					// Transmitted angle
+	double n_prism = 1.5214;	    // Prism refractive index 
+	double n_air = 1; 				// Air refractive index
+	double n_glass = 1.5168;    	// Glass refractive index
+
+public:
+
+	double PhaseShift(double);
+	double SnellLaw(double);
+
 }obj_SLayer;
 
-double SLayerSPR::ParamSPR(double theta_i){
+double SingleLayerSPR::PhaseShift(double theta_i){
 
-	obj_Fresnel.FresnelTermP(theta_i); // Calculating Fresnel terms for P-polarized wave
+	double K = (2*M_PI) / (obj_Const.lambda);
+	
+	theta_t = SnellLaw(theta_i);
 
-	// Local variables
-	std::complex<double> i(0, 1); // Defining an imaginary complex number i = sqrt(-1)
-	std::complex<double> realN(1, 0); // Defining a real complex number   
+	std::complex<double> n_Gold(0.467, 2.415); 
+	std::complex<double> n_Si(4.05, -0.028); 
 
-	param = PhaseShift(theta_i);
+	// Local variable
+	double param = K*obj_Const.d*cos(theta_i*(M_PI/180));
 
-	// Local variables
-	std::complex<double> S_11 (exp(param*i) / obj_Fresnel.tp_wave); // First row & first column of the scattering matrix
-	std::complex<double> S_21 (obj_Fresnel.rp_wave * S_11); // Second row & first column of the scattering matrix 
+	std::complex<double> beta (param*real(n_Si), param*imag(n_Si)); // Phase shift Beta describes in each layer of thickness (Complex number)
+	
+	// Local variable
+	double aux_1 = (n_prism*cos(theta_t*(M_PI/180)));
+	double aux_2 = (real(n_Si*cos(theta_i*(M_PI/180))));
+	double aux_3 = (imag(n_Si*cos(theta_i*(M_PI/180))));
 
-	std::complex<double> Reflectance (pow((S_21 / S_11), 2)); // To compute relectance for the one-layer system
-	std::complex<double> Transmittance (pow((realN / S_11), 2)); // To compute transmittance for the one-layer system
+	std::complex<double> num((aux_2 - aux_1),aux_3);
+	std::complex<double> den((aux_2 + aux_1),aux_3);
 
-	return(abs(Reflectance));
+	// ****
+	// Calculing Fresnel reflection coefficientes for the P_polarized wave between interface
+	// ***
+
+	std::complex<double> rp_wave(num/den);
+
+	return (abs(pow(rp_wave,2))); // Return relectance value for the one-layer system
 }
 
-double SLayerSPR::PhaseShift(double theta_i){ 
 
-	double k = (2* M_PI) / (obj_Const.lambda);
+double SingleLayerSPR::SnellLaw(double theta_i){
 
-	beta = k*(obj_Fresnel.n_2)*(obj_Const.d)*cos(theta_i*(M_PI/180)); // Phase shift Beta describes in each layer of thickness
+	std::complex<double> n_Gold(0.467, 2.415); 
+	std::complex<double> n_Si(4.05, -0.028); 
+	
+	// Local variable
+	double angle =  asin(arg(n_prism/n_Si)*sin(theta_i*(M_PI/180)));
 
-	return (beta);
+	return (angle);
 }
