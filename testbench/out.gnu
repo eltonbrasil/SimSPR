@@ -3,8 +3,8 @@
 
 reset
 
-set title "Interface Air - Silicon (Si)"
+set title "Interface Prism - Gold"
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Intensity reflectivity"
 
-plot [0:90] "output.txt" with lines
+plot [0:90] "Rp.txt" with lines, "Rs.txt" with lines 

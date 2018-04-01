@@ -2,8 +2,11 @@
 
 int main (){	
 
-	ofstream output;
-	output.open("output.txt");
+	ofstream out_Rs;
+	out_Rs.open("Rs.txt");
+
+	ofstream out_Rp;
+	out_Rp.open("Rp.txt");
 
 	cout <<
 	"-------------------------------------------------------------------------------" << "\n"
@@ -15,9 +18,11 @@ int main (){
 	
 	for(theta_i = 0; theta_i <= 90; theta_i++){
 		
-		output << theta_i << "\t\t" << obj_SLayer.PhaseShift(theta_i) << endl;
+		out_Rp << theta_i << "\t\t" << obj_SLayer.ReflectanceP(theta_i) << endl;
+		out_Rs << theta_i << "\t\t" << obj_SLayer.ReflectanceS(theta_i) << endl;
 	}
 
-	output.close();
+	out_Rp.close();
+	out_Rs.close();
 	return 0;
 }
