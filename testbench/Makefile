@@ -3,7 +3,7 @@
 
 CXXFLAGS = -Wall -g
 
-PROG = test
+PROG = test *.txt
 
 FONT = test.cpp
 
