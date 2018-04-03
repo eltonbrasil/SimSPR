@@ -23,9 +23,6 @@ public:
 	// Thickness of layers (nm)
 	constexpr static double d = 50 * pow(10,-9);
 
-	// Thickness of layers (nm)
-	constexpr static double d_1 = 10 * pow(10,-9);
-
 	// Thickness of prism (mm)
 	constexpr static double d_0 = 3 * pow(10,-3); 
  
