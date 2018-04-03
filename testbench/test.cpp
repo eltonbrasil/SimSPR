@@ -2,27 +2,33 @@
 
 int main (){	
 
-	ofstream out_Rs;
-	out_Rs.open("Rs.txt");
-
 	ofstream out_Rp;
-	out_Rp.open("Rp.txt");
+	out_Rp.open("rp.txt");
+
+	double n_0 = 1.51947, real = 0.467, imag = 2.4075, wavelength = 532;
+	double theta_i; // Indident angle
 
 	cout <<
-	"-------------------------------------------------------------------------------" << "\n"
-	"------------------------------ Welcome to SimSPR ------------------------------" << "\n\n" <<
-	"A basic framework for Fresnel equations simulations implemented in C++ language" << "\n\n" <<
-	"--> You can check your simulation results in the output file" <<endl<<endl;
-
-	double theta_i; // Indident angle
-	
-	for(theta_i = 0; theta_i <= 90; theta_i++){
+	"---------------------------------------------------------------------------------------" << "\n"
+	"---------------------------------- Welcome to SimSPR ----------------------------------" << "\n\n" 
+	" A basic framework for Surface Plasmon Resonance simulation implemented in C++ language" << "\n\n"
+	"---------------------------------------------------------------------------------------" << "\n\n";
+/*	cout << "Se the incident light wavelength (nm):" << "\n";
+	cin >> wavelength;
+	cout << "Type the prism refractive index:" << "\n";
+	cin >> n_0;
+	cout << "Type the refractive index of the material (real part):" << "\n";
+	cin >> real;
+	cout << "Type the refractive index of the material (imaginary part) then enter to execute:" << "\n";
+	cin >> imag;
+	cout << "--> You can check your simulation results for one-layer system in the output file" << "\n\n";
+*/
+	for(theta_i = 0; theta_i <= 360; theta_i++){
 		
-		out_Rp << theta_i << "\t\t" << obj_SLayer.ReflectanceP(theta_i) << endl;
-		out_Rs << theta_i << "\t\t" << obj_SLayer.ReflectanceS(theta_i) << endl;
+		 out_Rp << theta_i << "\t\t" << obj_SPR.Reflectance(theta_i, real, imag, n_0, wavelength) << endl;
 	}
 
 	out_Rp.close();
-	out_Rs.close();
+	
 	return 0;
 }

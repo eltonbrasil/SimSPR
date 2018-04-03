@@ -7,4 +7,4 @@ set title "Interface Prism - Gold"
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Intensity reflectivity"
 
-plot [0:90] "Rp.txt" with lines, "Rs.txt" with lines 
+plot [0:360] "rp.txt" with lines

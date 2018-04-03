@@ -18,9 +18,15 @@ public:
 	constexpr static double e_0 = 8.854 * pow(10,-12);
 
 	// The incident light wavelength (nm)
-	constexpr static double lambda = 632.8 * pow(10, -9);
+	constexpr static double lambda = 532 * pow(10, -9);
 
 	// Thickness of layers (nm)
-	constexpr static double d = 50 * pow(10,-9); 
+	constexpr static double d = 50 * pow(10,-9);
+
+	// Thickness of layers (nm)
+	constexpr static double d_1 = 10 * pow(10,-9);
+
+	// Thickness of prism (mm)
+	constexpr static double d_0 = 3 * pow(10,-3); 
  
 }obj_Const; 
