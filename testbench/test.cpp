@@ -29,7 +29,7 @@ int main (){
 	"---------------------------------- Welcome to SimSPR ----------------------------------" << "\n\n" 
 	" A basic framework for Surface Plasmon Resonance simulation implemented in C++ language" << "\n\n"
 	"---------------------------------------------------------------------------------------" << "\n\n";
-	cout << "Se the incident light wavelength (nm):" << "\n";
+	cout << "Type the incident light wavelength (nm):" << "\n";
 	cin >> wavelength;
 	cout << "Type the prism refractive index:" << "\n";
 	cin >> n_0;
@@ -47,7 +47,7 @@ int main (){
 		 out_Rp_5 << theta_i << "\t\t" << obj_SPR.Reflectance(theta_i, real, imag, n_0, wavelength, d_15) << endl;
 		 out_Rp_6 << theta_i << "\t\t" << obj_SPR.Reflectance(theta_i, real, imag, n_0, wavelength, d_16) << endl;
 
-		 theta_i = theta_i + 0.1; 
+		 theta_i = theta_i + 0.01; 
 	}
 
 	out_Rp_1.close();
@@ -55,7 +55,7 @@ int main (){
 	out_Rp_3.close();
 	out_Rp_4.close();
 	out_Rp_5.close();
-	out_Rp_6.close();
+	out_Rp_6.close(); 
 		
 	return 0;
 }

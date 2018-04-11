@@ -17,12 +17,6 @@ public:
 	// e_0 is the electric permitivity of free space (F/m)
 	constexpr static double e_0 = 8.854 * pow(10,-12);
 
-	// The incident light wavelength (nm)
-	constexpr static double lambda = 532 * pow(10, -9);
-
-	// Thickness of layers (nm)
-	constexpr static double d = 50 * pow(10,-9);
-
 	// Thickness of prism (mm)
 	constexpr static double d_0 = 3 * pow(10,-3); 
  

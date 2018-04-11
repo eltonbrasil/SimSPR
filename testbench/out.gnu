@@ -3,7 +3,7 @@
 
 reset
 
-set title "Interface Prism BK7 - Gold metal layer"
+set title "Interface Prism BK7 - Cu metal layer"
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Intensity reflectivity"
 
