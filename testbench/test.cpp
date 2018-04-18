@@ -7,7 +7,7 @@ int main (){
 
 	double theta_i = 0;
 	double real_1, imag_1, real_2, imag_2, n_prism, wavelength; 
-	double d_1 = 10.5, d_2 = 10;
+	double d_1 = 50, d_2 = 10;
 
 	cout <<
 	"---------------------------------------------------------------------------------------" << "\n"
@@ -28,7 +28,7 @@ int main (){
 	cin >> imag_2;
 	cout << "--> You can check your simulation results for one-layer system in the output file" << "\n\n";
 
-	while(theta_i <= 360){		 
+	while(theta_i <= 90){		 
 		 out_Rp_1 << theta_i << "\t\t" << obj_SPR.Reflectance(theta_i, real_1, imag_1, real_2, imag_2, n_prism, wavelength, d_1, d_2) << endl;
 		 
 		 theta_i = theta_i + 0.01; 

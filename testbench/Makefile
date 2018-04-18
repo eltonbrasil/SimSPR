@@ -1,7 +1,9 @@
 # Elton B. Costa, March 22, 2018
 # A fairly simple GCC Makefile
 
-CXXFLAGS = -Wall -g
+# CXXFLAGS = -Wall -g
+
+CXXFLAGS = -std=c++11
 
 PROG = test *.txt
 
