@@ -2,12 +2,15 @@
 
 int main (){	
 
-	ofstream out_Rp_1;
-	out_Rp_1.open("rp_1.txt");
+	ofstream out_Rp;
+	out_Rp.open("rp.txt");
+
+	ofstream out_Tp;
+	out_Tp.open("tp.txt");
 
 	double theta_i = 0;
 	double real_1, imag_1, real_2, imag_2, n_prism, wavelength; 
-	double d_1 = 50, d_2 = 10;
+	double d_1 = 40, d_2 = 10;
 
 	cout <<
 	"---------------------------------------------------------------------------------------" << "\n"
@@ -28,14 +31,15 @@ int main (){
 	cin >> imag_2;
 	cout << "--> You can check your simulation results for one-layer system in the output file" << "\n\n";
 
-	while(theta_i <= 90){		 
-		 out_Rp_1 << theta_i << "\t\t" << obj_SPR.Reflectance(theta_i, real_1, imag_1, real_2, imag_2, n_prism, wavelength, d_1, d_2) << endl;
+	while(theta_i <= 90){
+
+		 out_Rp << theta_i << "\t\t" << obj_SPR.Reflectance(theta_i, real_1, imag_1, real_2, imag_2, n_prism, wavelength, d_1, d_2) << endl;
+		 out_Tp << theta_i << "\t\t" << obj_SPR.Transmissivity(theta_i, real_1, imag_1, real_2, imag_2, n_prism, wavelength, d_1, d_2) << endl;
 		 
-		 theta_i = theta_i + 0.01; 
+		 theta_i = theta_i + 0.1; 
 	}
 
-	out_Rp_1.close();
-			
+	out_Rp.close();
+	out_Tp.close();			
 	return 0;
 }
-
