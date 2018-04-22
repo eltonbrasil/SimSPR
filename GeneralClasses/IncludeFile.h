@@ -18,3 +18,4 @@ using namespace std;
 #include "PhysicalConstants.h"
 #include "Fresnel.h"
 #include "../SPR/SingleLayerSPR.h"
+#include "../SPR/MultiLayerSPR.h"

@@ -5,7 +5,7 @@
 
 CXXFLAGS = -std=c++11
 
-PROG = test *.txt
+PROG = test 
 
 FONT = test.cpp
 
