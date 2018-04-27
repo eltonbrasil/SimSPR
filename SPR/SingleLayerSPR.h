@@ -22,7 +22,7 @@ double SingleLayerSPR::Reflectance(double theta_i, double real_1, double imag_1,
 	// ***
 
 	std::complex<double> n_metal_1(real_1, imag_1);
-	std::complex<double> n_metal_2(real_2, imag_2); 
+	double n_metal_2 = 1.33; 
 	std::complex<double> i(0, 1); // Defining an imaginary number
 
 	double lambda = wavelength*pow(10,-9);
