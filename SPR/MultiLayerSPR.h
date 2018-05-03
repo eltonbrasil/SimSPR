@@ -12,8 +12,6 @@ private:
 	std::complex<double> q_2; 	    // Admittance describes in each layer of thickness
 	std::complex<double> q_3; 	    // Admittance describes in each layer of thickness
 
-	std::complex<double> n_metal_3;
-
 	std::complex<double> rp_wave;	// Fresnel terms for the P-polarized wave (Reflectance)
 		
 public:

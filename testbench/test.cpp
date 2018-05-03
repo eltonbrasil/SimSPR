@@ -7,7 +7,7 @@ int main (){
 
 	int control;
 
-	double theta_i = 0;
+	double theta_i = 0;		//Angle of Incidence (degrees)
 
 	double real, imag, real_2, imag_2, real_3, imag_3;
 

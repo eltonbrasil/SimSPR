@@ -4,8 +4,11 @@ class SingleLayerSPR{
 
 private:
 	
-	std::complex<double> beta_0; 	// Phase shift Beta describes in each layer of thickness
 	std::complex<double> beta_1; 	// Phase shift Beta describes in each layer of thickness
+	std::complex<double> beta_2; 	// Phase shift Beta describes in each layer of thickness
+
+	std::complex<double> q_1; 	    // Admittance describes in each layer of thickness
+	std::complex<double> q_2; 	    // Admittance describes in each layer of thickness
 
 	std::complex<double> rp_wave;	// Fresnel terms for the P-polarized wave (Reflectance)
 		
