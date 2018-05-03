@@ -21,9 +21,10 @@ double SingleLayerSPR::Reflectance(double theta_i, double real_1, double imag_1,
 	// Initializing variables and defining local variables
 	// ***
 
-	std::complex<double> n_metal_1(real_1, imag_1);
-	double n_metal_2 = 1.33; 
 	std::complex<double> i(0, 1); // Defining an imaginary number
+
+	std::complex<double> n_metal_1(real_1, imag_1);
+			     double  n_metal_2 = real_2; 
 
 	double lambda = wavelength*pow(10,-9);
 	double K = (2*M_PI) / lambda;
@@ -62,5 +63,5 @@ double SingleLayerSPR::Reflectance(double theta_i, double real_1, double imag_1,
 
 	std::complex<double> rp_wave (num / den);
 
-	return (abs(pow(rp_wave, 2))); // Return reflectance value for the two-layer system
+	return (abs(pow(rp_wave, 2))); // Return reflectance value for the three-layer system
 } 

@@ -18,25 +18,23 @@ private:
 		
 public:
 
-	double Reflectance(double, double, double, double, double, double, double, double, double);
+	double Reflectance(double, double, double, double, double, double, double, double, double, double, double, double);
 	
 }m_SPR;
 
-double MultiLayerSPR::Reflectance(double theta_i, double real, double imag, double real_2, double imag_2, double n_prism, double wavelength, double d_1, double d_2){
+double MultiLayerSPR::Reflectance(double theta_i, double real, double imag, double real_2, double imag_2, double real_3, double imag_3, double n_prism, double wavelength, double d_1, double d_2, double d_3){
 
 	// ***
 	// Initializing variables
 	// ***
 
 	std::complex<double> n_metal_1(real, imag);
-	
-	std::complex<double> n_metal_3(real_2, imag_2); // Refractive index of 1-dodecanethiol SAM (Second Layer)
-
-	double n_metal_2 = 1.5; 
+				 double  n_metal_2 = real_2; 
+	std::complex<double> n_metal_3(real_3, imag_3); 	
 
 	double d_metal_1 = d_1 * pow(10,-9);
-	double d_metal_3 = d_2 * pow(10,-9);
-	double d_metal_2 = 2 * pow(10,-9);
+	double d_metal_2 = d_2 * pow(10,-9);
+	double d_metal_3 = d_3 * pow(10,-9);	
 
 	// ***
 	// Defining local variables
@@ -115,5 +113,5 @@ double MultiLayerSPR::Reflectance(double theta_i, double real, double imag, doub
 	
 	std::complex<double> rp_wave (num / den);
 
-	return (abs(pow(rp_wave, 2))); // Return reflectance value for the two-layer system
+	return (abs(pow(rp_wave, 2))); // Return reflectance value for the four-layer system
 } 

@@ -3,8 +3,8 @@
 
 reset
 
-set title "Kretschmann configuration"
+set title  "Kretschmann configuration"
 set xlabel "Angle of Incidence (degrees)"
-set ylabel "Intensity"
+set ylabel "Reflectance"
 
-plot "rp.txt" title "Reflectivity" with lines
+plot "sensitivity.txt" title "Sensitivity" with lines
