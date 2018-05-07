@@ -7,4 +7,4 @@ set title  "Kretschmann configuration"
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Reflectance"
 
-plot "sensitivity.txt" title "Sensitivity" with lines
+plot "reflectance.txt" title "Reflectivity" with lines

@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++11
 
 PROG = test *.txt
 
-FONT = test.cpp
+FONT = testbench.cpp
 
 OBJECT = $(FONT:.cpp=.o)
 

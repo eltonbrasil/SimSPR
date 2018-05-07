@@ -5,9 +5,9 @@ int main (){
 	ofstream out_R;
 	out_R.open("reflectance.txt");
 
-	int control;
+	int choice;
 
-	double theta_i = 0;		//Angle of Incidence (degrees)
+	double theta_i = 0;		// Angle of Incidence (degrees)
 
 	double real, imag, real_2, imag_2, real_3, imag_3;
 
@@ -33,9 +33,9 @@ int main (){
 	" An Open Source for Surface Plasmon Resonance simulation implemented in C++ language   " << "\n\n"
 	"---------------------------------------------------------------------------------------" << "\n\n";
 	
-	cout << "## This Open Source works using Kretschmann Configuration for three and four layers" "\n"; 
+	cout << "## This Open Source works using Kretschmann configuration for three and four layers" "\n"; 
     cout << "## (3) or (4) layers?" << "\n";
-    cin >> control;
+    cin >> choice;
 
 	cout << "## Type the incident light wavelength (nm):" << "\n";
 	cin >> wavelength;
@@ -53,7 +53,7 @@ int main (){
 	cout << "## Second Layer-- Type the refractive index of the material (imaginary part) then enter to execute:" << "\n";
 	cin >> imag_2;
 
-	if (control == 4){
+	if (choice == 4){
 		cout << "## Third Layer-- Type the refractive index of the material (real part):" << "\n";
 		cin >> real_3;
 		cout << "## Third Layer-- Type the refractive index of the material (imaginary part) then enter to execute:" << "\n";
@@ -62,12 +62,12 @@ int main (){
 
 	while(theta_i <= 90){
 		
-		if (control ==  3){
+		if (choice ==  3){
 		 	out_R << theta_i << "\t\t" << s_SPR.Reflectance(theta_i, real, imag, real_2, imag_2, n_prism, wavelength, d_1, d_2) << endl;
 		    theta_i = theta_i + 0.1;
 		}
 
-		if (control ==  4){
+		if (choice ==  4){
 		 	out_R << theta_i << "\t\t" << m_SPR.Reflectance(theta_i, real, imag, real_2, imag_2, real_3, imag_3, n_prism, wavelength, d_1, d_2, d_3) << endl;
 		    theta_i = theta_i + 0.1;
 		}

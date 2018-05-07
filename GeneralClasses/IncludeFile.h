@@ -10,6 +10,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -21,3 +23,4 @@ using namespace std;
 #include "../SPR/Sensitivity_AIM.h"
 #include "../SPR/SingleLayerSPR.h"
 #include "../SPR/MultiLayerSPR.h"
+#include "../SPR/SPR.h"
