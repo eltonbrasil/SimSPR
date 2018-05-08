@@ -11,8 +11,9 @@ int main (){
 
 	double wavelength;		// Incident wavelength
 
+    float theta_i = 0;
+
     int N;                  // Number of Layers
-	int theta_i; 			// Angle of Incidence (degrees)
 	int count;
 
     double real[N], *r;
@@ -61,13 +62,13 @@ int main (){
 
     }
 
-    for(theta_i = 0; theta_i <= 90; theta_i++){
+    while (theta_i <= 90){
              
         out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, n_prism, wavelength, d_metal, real[1], imag[1]) << endl;
         theta_i = theta_i + 0.1;
         
     }
-
+    
     cout <<
     "---------------------------------------------------------------------------------------" << "\n"
     "------------------------------------ Sim-SPR - REPORT ---------------------------------" << "\n\n";
@@ -78,7 +79,7 @@ int main (){
 
     for (count = 1; count < N; count++) {
 
-        cout << "Layer " << count << ":\t" << real[count] << "+" << imag[count] << "j" << endl;
+        cout << "Layer " << count << ": " << real[count] << "+" << imag[count] << "j" << endl;
                       
     }
 

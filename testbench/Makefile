@@ -17,7 +17,7 @@ help:
 	@echo "If you want to clean, type make clean"
 
 $(PROG): $(OBJECT)
-	g++ $(CXXFLAGS) $(OBJECT) -o $@
+	g++ -g $(CXXFLAGS) $(OBJECT) -o $@
 run:
 	./test
 clean:

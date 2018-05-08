@@ -12,11 +12,11 @@ private:
 		
 public:
 
-	double Reflectance(int, double, double, double, double, double);
+	double Reflectance(float, double, double, double, double, double);
 	
 }spr;
 
-double SPR::Reflectance(int theta_i, double n_prism, double wavelength, double d_metal, double real, double imag){
+double SPR::Reflectance(float theta_i, double n_prism, double wavelength, double d_metal, double real, double imag){
 	
 	// ***
 	// Initializing variables and defining local variables
