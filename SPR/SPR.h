@@ -4,21 +4,21 @@ class SPR{
 
 private:
 	
-	std::complex<double> beta_1; 	// Phase shift Beta describes in each layer of thickness
-	std::complex<double> beta_n;
-	
-	std::complex<double> q_1; 	    // Admittance describes in each layer of thickness
-	std::complex<double> q_n;
-	
+	std::complex<double> beta; 	    // Phase shift Beta describes in each layer of thickness
+				 double  beta_2;
+
+	std::complex<double> q; 	    // Admittance describes in each layer of thickness
+				 double  q_2;
+		
 	std::complex<double> rp_wave;	// Fresnel terms for the P-polarized wave (Reflectance)
 		
 public:
 
-	double Reflectance(float, double, double, double, double, double, double, double, double);
+	double Reflectance(float, double, double, double, double, double, double, double);
 	
 }spr;
 
-double SPR::Reflectance(float theta_i, double n_prism, double wavelength, double d_metal, double d, double real, double imag, double N_real, double N_imag){
+double SPR::Reflectance(float theta_i, double n_prism, double wavelength, double d, double real, double imag, double d_2, double n_2){
 	
 	// ***
 	// Initializing variables and defining local variables
@@ -34,65 +34,43 @@ double SPR::Reflectance(float theta_i, double n_prism, double wavelength, double
 	// Refractive index for each layer
 	// ***
 
-	std::complex<double> n_metal_1 (real, imag); 	 // Refractive index of the first metal layer
-	std::complex<double> n_metal   (N_real, N_imag); // Refractive index for each metal layer
-
+	std::complex<double> n (real, imag);           // Refractive index for each metal layer
+   
 	// ***
     // Layers thickness values (nm)
     // ***
 
-    double d_metal_1 = d_metal * pow(10,-9); 		 // First Layer thickness value (nm)
-    double d_metal_n = d * pow(10,-9); 		 		 // First Layer thickness value (nm)
-
+    double d_metal_1 = d * pow(10,-9); 		        
+    double d_metal_2 = d_2 * pow(10, -9);
+    
 	// Admittance 
 
-	std::complex<double> q_1 (sqrt(pow(n_metal_1,2) - pow(n_prism*sin(theta_i*(M_PI/180)),2)) / pow(n_metal_1,2));
-	std::complex<double> q_n (sqrt(pow(n_metal,2)   - pow(n_prism*sin(theta_i*(M_PI/180)),2)) / pow(n_metal,2));
-
+	std::complex<double> q     (sqrt(pow(n,2) -   pow(n_prism*sin(theta_i*(M_PI/180)),2)) / pow(n,2));
+	             double  q_2 =  sqrt(pow(n_2,2) - pow(n_prism*sin(theta_i*(M_PI/180)),2)) / pow(n_2,2);
+	
 	// Shift Phase
 
-	std::complex<double> beta_1 (K*d_metal_1*sqrt(pow(n_metal_1,2) - pow(n_prism*sin(theta_i*(M_PI/180)),2)));
-	std::complex<double> beta_n (K*d_metal_n*sqrt(pow(n_metal,2)   - pow(n_prism*sin(theta_i*(M_PI/180)),2)));
-
-	// ***
-	// Scattering matrix terms for the first interface: prism / first metal layer
-	// ***
-
-	std::complex<double> M_11 (cos(beta_1*(M_PI/180)));
-
-	std::complex<double> M_12 ((-i/q_1)*sin(beta_1*(M_PI/180)));
-
-	std::complex<double> M_21 (-i*q_1*sin(beta_1*(M_PI/180)));
-
-	std::complex<double> M_22 (cos(beta_1*(M_PI/180)));
-
+	std::complex<double> beta    (K*d_metal_1*sqrt(pow(n,2)   - pow(n_prism*sin(theta_i*(M_PI/180)),2)));
+				 double  beta_2 = K*d_metal_2*sqrt(pow(n_2,2) - pow(n_prism*sin(theta_i*(M_PI/180)),2)); 
+	
 	// ***
 	// Scattering matrix terms for each interface
 	// ***
 
-	std::complex<double> N_11 (cos(beta_n*(M_PI/180)));
+	std::complex<double> M_11 (cos(beta*(M_PI/180))*cos(beta_2*(M_PI/180)) - (q_2/q)*sin(beta*(M_PI/180))*sin(beta_2*(M_PI/180)));
 
-	std::complex<double> N_12 ((-i/q_n)*sin(beta_n*(M_PI/180)));
+	std::complex<double> M_12 ((-i/q_2)*sin(beta_2*(M_PI/180))*cos(beta*(M_PI/180)) - (i/q)*sin(beta*(M_PI/180))*cos(beta_2*(M_PI/180)));
 
-	std::complex<double> N_21 (-i*q_n*sin(beta_n*(M_PI/180)));
+	std::complex<double> M_21 (-i*q*sin(beta*(M_PI/180))*cos(beta_2*(M_PI/180)) - i*q_2*sin(beta_2*(M_PI/180))*cos(beta*(M_PI/180)));
 
-	std::complex<double> N_22 (cos(beta_n*(M_PI/180)));
-
-	// ***
-	// Scattering Matrix total terms for each interface
-	// ***
-
-	std::complex<double> MT_11 (M_11 * N_11 + M_12 * N_21);
-	std::complex<double> MT_12 (M_11 * N_12 + M_12 * N_22);
-	std::complex<double> MT_21 (M_21 * N_11 + M_22 * N_21);
-	std::complex<double> MT_22 (M_21 * N_12 + M_22 * N_22);
-
+	std::complex<double> M_22 ((-q/q_2)*sin(beta*(M_PI/180))*sin(beta_2*(M_PI/180)) + cos(beta*(M_PI/180))*cos(beta_2*(M_PI/180)));
+	
 	// ****
 	// Calculing Fresnel reflection coefficientes for the P_polarized wave between interface
 	// ***
 
-	std::complex<double> num ((MT_11 + MT_12*q_n)*q_1 - (MT_21 + MT_22*q_n));
-	std::complex<double> den ((MT_11 + MT_12*q_n)*q_1 + (MT_21 + MT_22*q_1));
+	std::complex<double> num ((M_11 + M_12*q_2)*q - (M_21 + M_22*q_2));
+	std::complex<double> den ((M_11 + M_12*q_2)*q + (M_21 + M_22*q_2));
 
 	std::complex<double> rp_wave (num / den);
 

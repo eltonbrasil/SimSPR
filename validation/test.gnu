@@ -20,6 +20,8 @@ set style line 3 lt 1 lc rgb "#5060D0" lw 3 pt 8 ps 1   # Blue triangle
 
 set style line 4 lt 1 lc rgb "#A00000" lw 3 pt 6 ps 1   # Red circle
 
-#plot [10:50]  "curva_ref_ouro670nm.txt"  w l lt 1 lw 4 lc rgb 'blue' t "COMSOL (Au)", "curva_ref_ouro670nm.txt" w l lt 0 lw 4 lc rgb 'red' t "Sim-SPR (Au)" 
+plot [10:50]  "curva_ref_ouro670nm.txt"  w l lt 1 lw 4 lc rgb 'blue' t "COMSOL (Au)", "curva_ref_ouro670nm.txt" w l lt 0 lw 4 lc rgb 'red' t "Sim-SPR (Au)" 
+
 #plot [30:70]  "curva_ref_prata670nm.txt" w l lt 1 lw 4 lc rgb 'blue' t "COMSOL (Ag)", "curva_ref_prata670nm.txt" w l lt 0 lw 4 lc rgb 'red' t "Sim-SPR (Ag)"  
-plot [10:50]   "curva_ref_cobre670nm.txt" w l lt 1 lw 4 lc rgb 'blue' t "COMSOL (Cu)", "curva_ref_cobre670nm.txt" w l lt 0 lw 4 lc rgb 'red' t "Sim-SPR (Cu)" 
+
+#plot [10:50]   "curva_ref_cobre670nm.txt" w l lt 1 lw 4 lc rgb 'blue' t "COMSOL (Cu)", "curva_ref_cobre670nm.txt" w l lt 0 lw 4 lc rgb 'red' t "Sim-SPR (Cu)" 
