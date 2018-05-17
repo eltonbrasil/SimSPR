@@ -13,8 +13,8 @@ int main (){
 	double wavelength;		// Incident wavelength
     double wavelength_2;    // Incident wavelength for WIM operation
 
-    float theta_i = 0;      // Incident angle
-    float theta_SPR;        // Surface Plasmon Resonance angle
+    double theta_i = 0;      // Incident angle
+    double theta_SPR;        // Surface Plasmon Resonance angle
 
     int N = 3;              // Number of Layers
 	int interface, mode;
@@ -88,7 +88,7 @@ int main (){
 
         while (theta_i <= 90){
                     
-            out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, n_prism, wavelength, thickness[1], real[1], imag[1], thickness[2], real[2]) << endl;
+            out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, wavelength, thickness[1], real[1], imag[1], n_prism) << endl;
             theta_i = theta_i + 0.1;
 
         }
@@ -98,7 +98,7 @@ int main (){
 
         while (wavelength <= wavelength_2){
                     
-            out_R << wavelength << "\t\t" << spr.Reflectance(theta_SPR, n_prism, wavelength, thickness[1], real[1], imag[1], thickness[2], real[2]) << endl;
+            out_R << wavelength << "\t\t" << spr.Reflectance(theta_SPR, wavelength, thickness[1], real[1], imag[1], n_prism) << endl;
             wavelength = wavelength + 0.1;
 
         }
