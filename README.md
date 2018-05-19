@@ -11,6 +11,7 @@ This open-source implementation is being developing under principles of software
 * Number of Layers: N layers
 * Configuration: Kretschmann
 * License: Open Source
+* Language: C++
 * Operation: AIM and WIM
 
 ## Prerequisites:
@@ -18,3 +19,7 @@ This open-source implementation is being developing under principles of software
 * G++ Compile (C++11 version)
 * Linux Terminal to compile Sim-SPR
 * You do not need any tools
+
+## Author
+
+* **Elton Brasil da Costa** - [Lattes Curriculum (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
