@@ -18,7 +18,36 @@ This open-source implementation is being developing under principles of software
 
 * G++ Compile (C++11 version)
 * Linux Terminal to compile Sim-SPR
-* You do not need any tools
+* GNUplot to plot waveforms
+
+## Running the tests
+
+You can compile Sim-SPR using Makefile technique, given by following commands: 
+### Testbench path
+```
+$ cd testbench
+```
+### Help
+```
+$ make help
+```
+### To compile your testbench using G++ tools
+```
+$ make test
+```
+### To run your simulation
+```
+$ make run
+```
+### To clean unnecessary files
+```
+$ make clean
+```
+### To plot waveforms
+```
+$ gnuplot
+$ load 'out.gnu'
+```
 
 ## Author
 
