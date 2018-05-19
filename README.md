@@ -22,4 +22,5 @@ This open-source implementation is being developing under principles of software
 
 ## Author
 
-* **Elton Brasil da Costa** - [Lattes Curriculum (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
+* **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
+* Contact: elton.costa@ee.ufcg.edu.br
