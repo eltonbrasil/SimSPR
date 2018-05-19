@@ -19,11 +19,12 @@ This open-source implementation is being developing under principles of software
 * G++ Compile (C++11 version)
 * Linux Terminal to compile Sim-SPR
 * GNUplot to plot waveforms
+* Octave library 
 
 ## Running the tests
 
 You can compile Sim-SPR using Makefile technique, given by following commands: 
-### Testbench path
+### Testbench folder
 ```
 $ cd testbench
 ```
