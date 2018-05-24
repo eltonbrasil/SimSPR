@@ -5,18 +5,18 @@ int main (){
     ofstream out_R;
     out_R.open("reflectance.txt");
 
-    double r_metal;         // Metal refractive index (real part)
-    double i_metal;         // Metal refractive index (imaginary part)
-    double d_metal;         // Layer thickness value (nm)
-    double n_prism; 		// Prism refractive index
+    double r_metal;          // Metal refractive index (real part)
+    double i_metal;          // Metal refractive index (imaginary part)
+    double d_metal;          // Layer thickness value (nm)
+    double n_prism; 		 // Prism refractive index
 
-	double wavelength;		// Incident wavelength
-    double wavelength_2;    // Incident wavelength for WIM operation
+	double wavelength;		 // Incident wavelength
+    double wavelength_2;     // Incident wavelength for WIM operation
 
     double theta_i = 0;      // Incident angle
     double theta_SPR;        // Surface Plasmon Resonance angle
 
-    int N = 3;              // Number of Layers
+    int N = 3;               // Set number of Layers
 	int interface, mode;
 
     double real[N], *r;
@@ -39,26 +39,28 @@ int main (){
     cout << "## Choose the operation mode | AIM (1) or WIM (2) |: " << endl;
 	cin >> mode;
 
+    cout << "## Number of layers:" << endl;
+    cin >> N;
+
     cout << "## Type the prism refractive index:" << endl;
     cin >> n_prism;
 
-    if(mode == 1){
+    switch(mode){
+        case 1:
+            cout << "## Type the incident light wavelength (nm):" << endl;
+            cin >> wavelength;
+            break;
 
-        cout << "## Type the incident light wavelength (nm):" << endl;
-        cin >> wavelength;
+        case 2:
+            cout << "## First value  | Incident light wavelength (nm) range:" << endl;
+            cin >> wavelength;
 
-    }
+            cout << "## Second value | Incident light wavelength (nm) range:" << endl;
+            cin >> wavelength_2;
 
-    if(mode == 2){
-
-        cout << "## First value  | Incident light wavelength (nm) range:" << endl;
-        cin >> wavelength;
-
-        cout << "## Second value | Incident light wavelength (nm) range:" << endl;
-        cin >> wavelength_2;
-
-        cout << "## SPR angle:" << endl;
-        cin >> theta_SPR;
+            cout << "## SPR angle:" << endl;
+            cin >> theta_SPR;
+            break;
 
     }
 

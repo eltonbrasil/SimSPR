@@ -3,7 +3,7 @@
 
 reset
 
-set xlabel "Comprimento de Onda (nm)" font "palatino,14"
+set xlabel "Angulo de Incidencia" font "palatino,14"
 set ylabel "Reflectância" font "palatino,20"
 
 set key left bottom
@@ -20,7 +20,7 @@ set style line 3 lt 1 lc rgb "#5060D0" lw 3 pt 8 ps 1   # Blue triangle
 
 set style line 4 lt 1 lc rgb "#A00000" lw 3 pt 6 ps 1   # Red circle
 
-plot [400:800]  "test_aim.txt"  w l lt 1 lw 4 lc rgb 'red' t "Sim-SPR (Prisma/Au/Agua)" 
+plot "au_670nm_AIM.txt"  w l lt 1 lw 4 lc rgb 'red' t "Sim-SPR (Prisma/Au/Agua)" 
 
 #plot [10:50]  "curva_ref_ouro670nm.txt"  w l lt 1 lw 4 lc rgb 'blue' t "COMSOL (Au)", "curva_ref_ouro670nm.txt" w l lt 0 lw 4 lc rgb 'red' t "Sim-SPR (Au)" 
 
