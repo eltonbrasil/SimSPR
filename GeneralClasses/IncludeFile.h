@@ -11,7 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <octave/oct.h>
+// #include <octave/oct.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,4 +23,4 @@ using namespace std;
 #include "Fresnel.h"
 
 #include "../SPR/Sensitivity_AIM.h"
-#include "../SPR/SPR.h"
+#include "../SPR/SPR4Layers.h"

@@ -38,15 +38,15 @@ double SPR::Reflectance(double theta_i, double wavelength, double d, double real
 	// Refractive index for each layer
 	// ***
 
-	Complex n_metal   = Complex (real, imag);
-	double  n_metal_2 = real_2;
+	Complex n_metal   = Complex (real, imag); // First Layer
+	double  n_metal_2 = real_2;				  // Second Layer
 
 	// ***
     // Layers thickness values (nm)
     // ***
 
-    double d_metal =   d * pow(10,-9);
-    double d_metal_2 = d_2 * pow(10,-9);
+    double d_metal =   d * pow(10,-9);		  // First Layer
+    double d_metal_2 = d_2 * pow(10,-9);	  // Second Layer
 
     // ***
     // Admittance
@@ -90,11 +90,11 @@ double SPR::Reflectance(double theta_i, double wavelength, double d, double real
 	// Matrix Total
 	// ***
 
-	for (int c = 0; c < 2; c++) {
-    	for (int d = 0; d < 2; d++) {
-    		for (int k = 0; k < 2; k++) {
+	for (int row = 0; row < 2; row++) {
+    	for (int col = 0; col < 2; col++) {
+    		for (int inner = 0; inner < 2; inner++) {
 
-        		M_T(c, d) = M_T(c, d) + M(c, k)*M_2(k, d);
+        		M_T(row, col) += M(row, inner)*M_2(inner, col);
         
         	}
       	}
