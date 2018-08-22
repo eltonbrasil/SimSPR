@@ -11,13 +11,11 @@ int main (){
     double n_prism; 		 // Prism refractive index
 
 	double wavelength;		 // Incident wavelength
-    double wavelength_2;     // Incident wavelength for WIM operation
-
+    
     double theta_i = 0;      // Incident angle
-    double theta_SPR = 0;    // Surface Plasmon Resonance angle
-
-    int N = 4;               // Set number of Layers
-	int interface, mode;
+    
+    int N;                   // Set number of Layers
+	int interface;
 
     double real[N], *r;
     r = &real[0]; 
@@ -36,33 +34,15 @@ int main (){
 
 	cout << "## This Open Source works using Kretschmann configuration for N layers" << endl << endl;
 
-    cout << "## Choose the operation mode | AIM (1) or WIM (2) |: " << endl;
-	cin >> mode;
-
     cout << "## Number of layers:" << endl;
     cin >> N;
 
     cout << "## Type the prism refractive index:" << endl;
     cin >> n_prism;
 
-    switch(mode){
-        case 1:
-            cout << "## Type the incident light wavelength (nm):" << endl;
-            cin >> wavelength;
-            break;
-
-        case 2:
-            cout << "## First value  | Incident light wavelength (nm) range:" << endl;
-            cin >> wavelength;
-
-            cout << "## Second value | Incident light wavelength (nm) range:" << endl;
-            cin >> wavelength_2;
-
-            cout << "## SPR angle:" << endl;
-            cin >> theta_SPR;
-            break;
-
-    }
+    cout << "## Type the incident light wavelength (nm):" << endl;
+    cin >> wavelength;
+         
 
     for (interface = 1; interface < N; interface++) {
 
@@ -86,46 +66,21 @@ int main (){
 
     }
 
-    if(mode == 1){
-
-        while (theta_i <= 90){
+    while (theta_i <= 90){
                     
-            out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, wavelength, n_prism, real[3], real[1], imag[1], real[2], imag[2], thickness[1], thickness[2]) << endl;
+        out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, wavelength, n_prism, real[2], real[1], imag[1], thickness[1]) << endl;
             
-            theta_i = theta_i + 0.1;
+        theta_i = theta_i + 0.1;
 
-        }
     }
-
-    if(mode == 2){
-
-        while (wavelength <= wavelength_2){
-                    
-            out_R << wavelength << "\t\t" << spr.Reflectance(theta_i, wavelength, n_prism, real[3], real[1], imag[1], real[2], imag[2], thickness[1], thickness[2]) << endl;
-            wavelength = wavelength + 1;
-
-        }
-    }
-
+    
     cout <<
     "---------------------------------------------------------------------------------------" << "\n"
     "------------------------------------ Sim-SPR - REPORT ---------------------------------" << "\n\n";
     
-    if(mode == 1){
+    cout << "Operation mode: AIM" << endl << endl;
 
-        cout << "Operation mode: AIM" << endl << endl;
-
-        cout << "Wavelength: " << wavelength << " nm" << endl << endl;
-
-    }
-
-    if(mode == 2){
-        
-        cout << "Operation mode: WIM" << endl << endl;
-
-        cout << "SPR angle: " << theta_SPR << endl << endl;
-
-    }
+    cout << "Wavelength: " << wavelength << " nm" << endl << endl;
 
     cout << "Number of Layers: " << N << endl << endl;
 
