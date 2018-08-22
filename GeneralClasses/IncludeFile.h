@@ -11,7 +11,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-// #include <octave/oct.h>
+#include <sys/time.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -21,6 +21,8 @@ using namespace std;
 
 #include "PhysicalConstants.h"
 #include "Fresnel.h"
+#include "Timer.h"
+#include "Timer.cpp"
 
 #include "../SPR/Sensitivity_AIM.h"
 #include "../SPR/Kretschmann/SPR3Layers.h"

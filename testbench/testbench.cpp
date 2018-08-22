@@ -26,13 +26,15 @@ int main (){
     double thickness[N], *d;        
     d = &thickness[0];
 
+    Timer timer;
+
     cout <<
 	"---------------------------------------------------------------------------------------" << "\n"
 	"---------------------------------- Welcome to Sim-SPR ---------------------------------" << "\n\n" 
-	" An Open Source for Surface Plasmon Resonance simulation implemented in C++ language   " << "\n\n"
+	" An Open Source for Surface Plasmon Resonance Simulation Implemented in C++ Language   " << "\n\n"
 	"---------------------------------------------------------------------------------------" << "\n\n";
 
-	cout << "## This Open Source works using Kretschmann configuration for N layers" << endl << endl;
+	cout << "## This Open Source works using Kretschmann and Otto configuration for N layers" << endl << endl;
 
     cout << "## Number of layers:" << endl;
     cin >> N;
@@ -66,6 +68,9 @@ int main (){
 
     }
 
+    // Start timer
+    timer.start();
+
     while (theta_i <= 90){
                     
         out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, wavelength, n_prism, real[2], real[1], imag[1], thickness[1]) << endl;
@@ -73,6 +78,8 @@ int main (){
         theta_i = theta_i + 0.1;
 
     }
+    // stop timer
+    timer.stop();
     
     cout <<
     "---------------------------------------------------------------------------------------" << "\n"
@@ -92,6 +99,8 @@ int main (){
         cout << "Thickness " << interface << ": " << thickness[interface] << " nm" << endl << endl;
                       
     }
+
+    cout << "Simulation Time: " << timer.getElapsedTimeInMilliSec() << " ms" << endl << endl;
 
     cout << "--> You can check your simulation results (Incident angle x Reflectivity) in the output file" << "\n\n";
 
