@@ -23,4 +23,4 @@ using namespace std;
 #include "Fresnel.h"
 
 #include "../SPR/Sensitivity_AIM.h"
-#include "../SPR/SPR3Layers.h"
+#include "../SPR/Kretschmann/SPR3Layers.h"
