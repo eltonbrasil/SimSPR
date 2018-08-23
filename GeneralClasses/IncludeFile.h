@@ -24,5 +24,5 @@ using namespace std;
 #include "Timer.h"
 #include "Timer.cpp"
 
-#include "../SPR/Sensitivity_AIM.h"
+#include "../SPR/Kretschmann/Sensitivity_AIM.h"
 #include "../SPR/Kretschmann/SPR3Layers.h"

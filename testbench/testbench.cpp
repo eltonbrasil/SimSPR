@@ -5,6 +5,9 @@ int main (){
     ofstream out_R;
     out_R.open("reflectance.txt");
 
+    fstream out_S;
+    out_S.open("sensitivity.txt");
+
     double r_metal;          // Metal refractive index (real part)
     double i_metal;          // Metal refractive index (imaginary part)
     double d_metal;          // Layer thickness value (nm)
@@ -74,6 +77,7 @@ int main (){
     while (theta_i <= 90){
                     
         out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, wavelength, n_prism, real[2], real[1], imag[1], thickness[1]) << endl;
+        out_S << theta_i << "\t\t" << s.Sensitivity(theta_i, n_prism, real[2]) << endl;
             
         theta_i = theta_i + 0.1;
 
