@@ -22,14 +22,8 @@ double SPR3Layers::Reflectance(double theta_i, double wavelength, double n_prism
 
 	lambda = wavelength * pow(10,-9); 	// Wavelength (nm)
 	K0 = (2*M_PI) / lambda;		  	  	// K0 is the free space wavenumber of optical wave
-
-	// ***
-	// Setting local variables
-	// ***
-	
-	Complex j = Complex (0,1);		  	// Complex imaginary number
-	Complex r = Complex (1,0);		  	// Complex real number
-	Complex r2 = Complex (2,0);		  	// Complex real number
+	const std::complex<double> i(0,1);	// Imaginary number
+	double r = 2;
 
 	// ***
 	// Refractive index for each layer
@@ -46,12 +40,10 @@ double SPR3Layers::Reflectance(double theta_i, double wavelength, double n_prism
 	// ***
 	// Reflective coefficient of the reflection from mediums
 	// ***
-
-	double K1 = K0*(sqrt(pow(n_prism,2)) - pow(n_prism,2)*pow(sin(theta_i*(M_PI/180)),2));
-
-	Complex K2 = Complex (K0*(sqrt(pow(n_2,2)) - pow(n_prism,2)*pow(sin(theta_i*(M_PI/180)),2)));
-
-	double K3 = K0*(sqrt(pow(n_analito,2)) - pow(n_prism,2)*pow(sin(theta_i*(M_PI/180)),2));
+ 
+	double K1 =  K0*(sqrt(pow(n_prism,2)) - pow(n_prism,2)*pow(sin(theta_i*(M_PI/180)),2));
+	Complex K2 = K0*std::sqrt(pow(n_2,2) - pow(n_prism,2)*pow(sin(theta_i*(M_PI/180)),2));
+	double K3 =  K0*(sqrt(pow(n_analito,2)) - pow(n_prism,2)*pow(sin(theta_i*(M_PI/180)),2));
 		
 	// ***
 	// Fresnel reflection coefficients for the P polarized wave between interfaces
@@ -61,13 +53,12 @@ double SPR3Layers::Reflectance(double theta_i, double wavelength, double n_prism
 
 	Complex r_23 = Complex (((K2 * pow(n_analito,2)) - (K3 * pow(n_2,2))) / ((K2 * pow(n_analito,2)) + (K3 * pow(n_2,2))));
 
-	Complex r_p = Complex ((r_12 + r_23*exp(j*r2*K2*d_2)) / (r + r_12*r_23*exp(j*r2*K2*d_2)));
-
 	// ***
 	// Reflectance 
 	// ***
 
-	R = pow(abs(r_p),2);
+	Complex R = (r_12 + r_23*std::exp(-i*r*K2*d_2)) / (r/2 + r_12*r_23*std::exp(-i*r*K2*d_2));
 
-	return (R);
+	
+	return abs(pow(R,2));
 }
