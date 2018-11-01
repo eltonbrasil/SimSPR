@@ -25,3 +25,4 @@ using namespace std;
 #include "Timer.cpp"
 
 #include "../SPR/Kretschmann/SPR3Layers.h"
+#include "../SPR/Kretschmann/GaussianBeam.h"

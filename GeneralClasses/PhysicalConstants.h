@@ -17,7 +17,4 @@ public:
 	// e_0 is the electric permitivity of free space (F/m)
 	constexpr static double e_0 = 8.854 * pow(10,-12);
 
-	// Thickness of prism (mm)
-	constexpr static double d_0 = 3 * pow(10,-3); 
- 
 }obj_Const; 
