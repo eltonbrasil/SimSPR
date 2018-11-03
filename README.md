@@ -1,4 +1,5 @@
-# Sim-SPR
+![logo](https://user-images.githubusercontent.com/25873978/47947397-7c18f200-defa-11e8-9943-9d10470bd2b9.png)
+
 # An Open-Source Simulator for Surface Plasmon Resonance Applications
 ## Description:
 
