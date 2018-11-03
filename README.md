@@ -58,3 +58,5 @@ $ load 'out.gnu'
 
 * **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
 * Contact: elton.costa@ee.ufcg.edu.br
+
+![logoufcg](https://user-images.githubusercontent.com/25873978/47947489-1c234b00-defc-11e8-9ae5-60eb838bd560.png)
