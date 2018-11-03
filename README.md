@@ -25,8 +25,9 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
 * GNUplot to plot waveforms.
 
 ## Download Sim-SPR:
-
-* git clone https://github.com/eltonbrasil/SimSPR.git 
+```
+$ git clone https://github.com/eltonbrasil/SimSPR.git 
+```
 
 ## Running tests
 
