@@ -3,7 +3,7 @@
 # An Open-Source Simulator for Surface Plasmon Resonance Applications
 ## Description:
 
-We present our free, open-source simulator for Surface Plasmon Resonance (SPR) applications implemented in C++ language. 
+We present our free, open-source simulator for Surface Plasmon Resonance (SPR) applications implemented in C++ language.
 
 ## Characteristics:
 
@@ -12,6 +12,10 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
 * License: Open Source;
 * Language: C++;
 * Operation: Angular Interrogation Mode (AIM).
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/47953522-a4860800-df5d-11e8-9d89-2d8bbd403478.png">
+</p>
 
 ## Prerequisites:
 
