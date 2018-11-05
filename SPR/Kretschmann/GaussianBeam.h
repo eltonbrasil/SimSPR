@@ -5,11 +5,12 @@ class GaussianBeam{
 	private:
 
 		typedef std::complex<double> Complex;
+
 		double lambda, K0;
 
 	public:
 
-		double Reflectance ();
+		double Reflectance (double, double, double, double, double, double, double, double, double, double);
 
 }gaussian;
 
@@ -18,10 +19,13 @@ class GaussianBeam{
     // for four-layer Kretschmann and Otto Configuration
 	// ***
 
-double GaussianBeam::Reflectance(){
+double GaussianBeam::Reflectance(double theta_i, double wavelength, double n_prism, double n2_r, double n2_i, double n_analyte, double n4_r, double n4_i, double d2, double d3){
 
 	// Initializing parameters
 	
+	const std::complex<double> i(0,1);	// Imaginary number
+	double r = 2;						// aux real number
+	double r_aux = 1;					// aux real number
 	lambda = wavelength * pow(10,-9); 	// Wavelength (nm)
 	K0 = (2*M_PI) / lambda;		  	  	// K0 is the free space wavenumber of optical wave
 	// ************************************************************************************
@@ -62,13 +66,29 @@ double GaussianBeam::Reflectance(){
     Complex K4Z = std::sqrt(pow(K4,2) - pow(K4Y,2)); // 4th Layer (complex number)
     // ************************************************************************************
 
-    // Fresnel relection coefficients
+    // Fresnel reflection coefficients
 
     Complex r_12 = Complex (((K1Z / pow(n_prism,2)) - (K2Z / pow(n_2,2))) / (K1Z / pow(n_prism,2)) + (K2Z / pow(n_2,2)));
     Complex r_23 = Complex (((K2Z / pow(n_2,2)) - (K3Z / pow(n_analyte,2))) / (K2Z / pow(n_2,2)) + (K3Z / pow(n_analyte,2)));
     Complex r_34 = Complex (((K3Z / pow(n_analyte,2)) - (K4Z / pow(n_4,2))) / (K3Z / pow(n_analyte,2)) + (K4Z / pow(n_4,2)));
     // ************************************************************************************
 
-    // Fresnel relection coefficients
-    
+    // Fresnel reflection coefficient (r_p) for p-polarized Gaussian beam
+
+    Complex N = Complex (r_12 + r_12*r_23*r_34*std::exp(r*i*K3Z*d_3) + std::exp(r*i*K2Z*d_2)*(r_23 + r_34*std::exp(r*i*K3Z*d_3)));
+    Complex D = Complex (r_aux + r_23*r_34*std::exp(r*i*K3Z*d_3) + r_12*std::exp(r*i*K2Z*d_2)*(r_23 + r_34*std::exp(r*i*K3Z*d_3)));
+
+    Complex r_p = Complex (N / D);
+    // ************************************************************************************
+
+    // Reflectance (R) for p-polarized Gaussian beam
+
+    double theta_alpha = atan( std::imag(N*std::conj(D)) / std::real(N*std::conj(D)) );
+    double R_alpha = pow(abs(r_p),2);
+    Complex r_alpha = std::sqrt(R_alpha)*std::exp(i*theta_alpha);
+
+    Complex R = Complex ((pow(theta_i,2)/r)*std::real(r*i*(r_aux / tan(theta_i))*(r_p / r_alpha)));
+    // (std::real(2*i*(1 / tan(theta_i))));
+
+    return abs(R);    
 }

@@ -5,6 +5,9 @@ int main (){
     ofstream out_R;
     out_R.open("reflectance.txt");
 
+    ofstream GaussianBeam;
+    GaussianBeam.open("gaussian.txt");
+
     double r_metal;          // Metal refractive index (real part)
     double i_metal;          // Metal refractive index (imaginary part)
     double d_metal;          // Layer thickness value (nm)
@@ -14,7 +17,7 @@ int main (){
     
     double theta_i = 0;      // Incident angle
     
-    int N;                   // Set number of Layers
+    int N = 4;               // Set number of Layers
 	int interface;
 
     double real[N], *r;
@@ -73,6 +76,7 @@ int main (){
     while (theta_i <= 90){
                     
         out_R << theta_i << "\t\t" << spr.Reflectance(theta_i, wavelength, n_prism, real[2], real[1], imag[1], thickness[1]) << endl;
+        GaussianBeam << theta_i << "\t\t" << gaussian.Reflectance(theta_i, wavelength, n_prism, real[1], imag[1], real[2], real[3], imag[3], thickness[1], thickness[2]) << endl;
         
         theta_i = theta_i + 0.1;
  
