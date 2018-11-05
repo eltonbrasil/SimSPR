@@ -5,6 +5,7 @@ class SENSITIVITY_AIM{
 private:
 
 	typedef std::complex<double> Complex; 			// Sensitivity for Angular Interrogation method
+	double S_AIM;
 	
 public:
 
@@ -12,15 +13,14 @@ public:
 
 }s;
 
-double SENSITIVITY_AIM::Sensitivity(double theta_i, double n_prism, double n_analyte){
-
-	// ***
-	// Determining the real part of the dielectric constant of metal layer by coupling condition
-	// ***
+double SENSITIVITY_AIM::Sensitivity(double e_mr, double n_prism, double n_analyte){
 
 	// ***
 	// Sensitivity for Angular Interrogation Mode
 	// ***
+	
+	Complex N = Complex (e_mr * sqrt(-e_mr));
+	double  D = (e_mr + pow(n_analyte,2)) * sqrt(e_mr*(pow(n_analyte,2) - pow(n_prism,2)) - pow(n_analyte,2)*pow(n_prism,2));
 
-	return (e_mr);  // Return sensitivity value for the three-layer system
+	return (abs(N / D));  // Return sensitivity value for the three-layer system
 }

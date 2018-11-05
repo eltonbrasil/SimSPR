@@ -25,3 +25,4 @@ using namespace std;
 
 #include "../SPR/Kretschmann/SPR3Layers.h"
 #include "../SPR/Kretschmann/GaussianBeam.h"
+#include "../SPR/Kretschmann/Sensitivity_AIM.h"

@@ -20,6 +20,8 @@ int main (){
     int N = 4;               // Set number of Layers
 	int interface;
 
+    double e_mr = -129.17;   // Set the real part of the dielectric constant of the metal layer for each wavelength,
+                             // if you want to check the sensitivity
     double real[N], *r;
     r = &real[0]; 
 
@@ -39,15 +41,11 @@ int main (){
 
 	cout << "## This Open Source works using Kretschmann and Otto configuration for N layers" << endl << endl;
 
-    cout << "## Number of layers:" << endl;
-    cin >> N;
+    cout << "## Type the incident light wavelength (nm):" << endl;
+    cin >> wavelength;
 
     cout << "## Type the prism refractive index:" << endl;
     cin >> n_prism;
-
-    cout << "## Type the incident light wavelength (nm):" << endl;
-    cin >> wavelength;
-         
 
     for (interface = 1; interface < N; interface++) {
 
@@ -102,6 +100,8 @@ int main (){
         cout << "Thickness " << interface << ": " << thickness[interface] << " nm" << endl << endl;
                       
     }
+
+    cout << "Sensitivity [deg/RIU]:\t" << s.Sensitivity(e_mr, n_prism, real[2]) << endl << endl;
 
     cout << "Simulation Time: " << timer.getElapsedTimeInMilliSec() << " ms" << endl << endl;
 

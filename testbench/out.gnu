@@ -6,4 +6,4 @@ reset
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Reflectance"
 
-plot "gaussian.txt" with lines
+plot "reflectance.txt" with lines
