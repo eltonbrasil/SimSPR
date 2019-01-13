@@ -6,4 +6,4 @@ reset
 set xlabel "Angle of Incidence (degrees)"
 set ylabel "Reflectance"
 
-plot "reflectance.txt" with lines
+plot "grating.txt" with lines
