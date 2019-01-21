@@ -72,10 +72,10 @@ $ gnuplot
 $ load 'out.gnu'
 ```
 
-## Future Improvements - Full Sequence Diagram of the Sim-SPR (In Developing)
+## Full Sequence Diagram of the Sim-SPR
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/51502619-fbadb300-1dbd-11e9-8c62-40c1660c4316.jpg">
+  <img src="https://user-images.githubusercontent.com/25873978/51502945-9a86df00-1dbf-11e9-889d-f02be6fefcd4.jpg">
 </p>
 
 ## Author
