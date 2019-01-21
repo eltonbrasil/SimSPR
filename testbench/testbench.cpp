@@ -5,21 +5,22 @@ int main (void){
     ofstream out_R;
     out_R.open("reflectance.txt");
 
-    double r_metal;          // Metal refractive index (real part)
-    double i_metal;          // Metal refractive index (imaginary part)
-    double d_metal;          // Layer thickness value (nm)
-    double n_prism; 		 // Prism refractive index
-    double n_d;              // Absorptance spectrums
+    double r_metal;             // Metal refractive index (real part)
+    double i_metal;             // Metal refractive index (imaginary part)
+    double d_metal;             // Layer thickness value (nm)
+    double n_prism; 		    // Prism refractive index
+    double n_d;                 // Absorptance spectrums
 
-	double wavelength;		 // Incident wavelength
+	double wavelength;		    // Incident wavelength
     
-    double theta_i = 0.1745; // Incident angle (radian)
+    double theta_i = 0.1745;    // Start Incident Angle (in radians)
     
-    int N = 3;               // Set number of Layers
+    int N = 3;                  // Set number of Layers
+
+    double step_scale = 0.001;  // Set the interval step scale 
+
 	int interface, choose;
 
-    double e_mr = -129.17;   // Set the real part of the dielectric constant of the metal layer for each wavelength,
-                             // if you want to check the sensitivity
     double real[N], *r;
     r = &real[0]; 
 
@@ -87,8 +88,8 @@ int main (void){
     // Start timer
     timer.start();
         while (theta_i <= 1.5707){                    
-            out_R << KSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
-            theta_i = theta_i + 0.001; 
+            out_R << (theta_i * (180/M_PI)) << "\t\t" << KSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
+            theta_i = theta_i + step_scale; 
         }
     // stop timer
     timer.stop();
@@ -103,8 +104,8 @@ int main (void){
     timer.start();
 
         while (theta_i <= 1.5707){                    
-            out_R << (theta_i * (180/M_PI)) << "\t\t" <<OttoSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
-            theta_i = theta_i + 0.001; 
+            out_R << (theta_i * (180/M_PI)) << "\t\t" << OttoSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
+            theta_i = theta_i + step_scale; 
         }
     // stop timer
     timer.stop();
