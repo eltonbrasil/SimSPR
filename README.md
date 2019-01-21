@@ -33,22 +33,28 @@ $ git clone https://github.com/eltonbrasil/SimSPR.git
 
 You can compile Sim-SPR using Makefile technique, given by following commands:
 
-### Go to testbench on Sim-SPR folder as:
+### First, go to testbench on Sim-SPR folder as:
 ```
 $ cd testbench
 ```
-### Do you need help?
+### If you need you need some help:
 ```
 $ make help
 ```
 ### To compile your testbench using G++ tools:
 ```
-$ make test
+$ make all
 ```
 ### To run your simulation:
 ```
 $ make run
 ```
+
+### After to run your simulation, you will be presented to the "Welcome to Sim-SPR":
+```
+$ make run
+```
+
 ### To clean unnecessary files:
 ```
 $ make clean
