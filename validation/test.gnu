@@ -12,7 +12,7 @@ set style data lines
 
 set grid back ls 80
 
-set style line 1 lt 1 lc rgb "#A00000" lw 3 pt 2 ps 1   # red line
+set style line 1 lt 1 lc rgb "#A00001" lw 3 pt 2 ps 1   # red line
 
 set style line 2 lt 1 lc rgb "#000000" lw 3 pt 4 ps 1   # black square
 

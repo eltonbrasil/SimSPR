@@ -8,6 +8,7 @@
 
 // Include general libraries
 
+#include <octave/oct.h>
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -26,4 +27,5 @@ using namespace std;
 #include "../SPR/Kretschmann/SPR3Layers.h"
 #include "../SPR/Kretschmann/GaussianBeam.h"
 #include "../SPR/Kretschmann/Sensitivity_AIM.h"
+#include "../SPR/Otto/Otto3Layers.h"
 #include "../SPR/Grating/Grating.h"
