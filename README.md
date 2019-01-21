@@ -72,6 +72,12 @@ $ gnuplot
 $ load 'out.gnu'
 ```
 
+## Future Improvements - Full Sequence Diagram of the Sim-SPR (In Developing)
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/51502619-fbadb300-1dbd-11e9-8c62-40c1660c4316.jpg">
+</p>
+
 ## Author
 
 * **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
