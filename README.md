@@ -37,7 +37,7 @@ You can compile Sim-SPR using Makefile technique, given by following commands:
 ```
 $ cd testbench
 ```
-### If you need you need some help:
+### If you need some help:
 ```
 $ make help
 ```
@@ -49,11 +49,11 @@ $ make all
 ```
 $ make run
 ```
+### After to run your simulation, you will be presented to the "Welcome to Sim-SPR", in which you can choose the SPR sensor configuration, presented as:
 
-### After to run your simulation, you will be presented to the "Welcome to Sim-SPR":
-```
-$ make run
-```
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/51501261-47f5f480-1db8-11e9-8cce-4b4e1dedf2c6.png">
+</p>
 
 ### To clean unnecessary files:
 ```
