@@ -24,8 +24,5 @@ using namespace std;
 #include "Timer.h"
 #include "Timer.cpp"
 
-#include "../SPR/Kretschmann/SPR3Layers.h"
-#include "../SPR/Kretschmann/GaussianBeam.h"
-#include "../SPR/Kretschmann/Sensitivity_AIM.h"
-#include "../SPR/Otto/Otto3Layers.h"
-#include "../SPR/Grating/Grating.h"
+#include "../SPR/AIM/Kretschmann/K3Layers.h"
+#include "../SPR/AIM/Otto/Otto3Layers.h"

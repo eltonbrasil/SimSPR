@@ -9,7 +9,7 @@ class PhysicalConstants
 public:
 	
 	// c is the light`s velocity (m/s)
-	constexpr static double c = 299792458;
+	constexpr static double c = 3*pow(10,8);
 
 	// u_0 is the permeability of free space (H/m)
 	constexpr static double u_0 = 4*M_PI*pow(10,-7);

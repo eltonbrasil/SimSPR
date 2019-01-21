@@ -1,24 +1,25 @@
-# Elton B. Costa, March 22, 2018
-# A fairly simple GCC Makefile
+# Elton B. Costa, January 21, 2019
+# A fairly simple GCC Makefile linked with Octave
 
-# CXXFLAGS = -Wall -g
-
-CXXFLAGS = -std=c++11
-
-PROG = test
-
-FONT = testbench.cpp
-
-OBJECT = $(FONT:.cpp=.o)
+makefile:
 
 help:
-	@echo "Type make test to compile your testench using GCC tools"
+	@echo "Type make all to compile your testbench using GCC tools linked to Octave"
 	@echo "If compilation is done, type make run"
 	@echo "If you want to clean, type make clean"
 
-$(PROG): $(OBJECT)
-	g++ -g $(CXXFLAGS) $(OBJECT) -o $@
-run:
-	./test
+all: testbench
+
 clean:
-	-@ rm -f $(OBJECT) $(PROG)
+	-rm testbench.o testbench
+	rm -i .*
+
+testbench:
+	mkoctfile testbench.cpp --link-stand-alone -o testbench
+
+run:
+	./testbench
+
+testbench.o: testbench.cpp
+	g++ -g -I$(OCTAVE_INCLUDE)
+	-I$(OCTAVE_INCLUDE)octave -o testbench.o testbench.cpp
