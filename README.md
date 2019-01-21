@@ -24,12 +24,12 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
 * Git subversion;
 * GNUplot to plot waveforms.
 
-## Download Sim-SPR:
+## Getting Started (Download Sim-SPR):
 ```
 $ git clone https://github.com/eltonbrasil/SimSPR.git 
 ```
 
-## Running tests
+## Running Applications
 
 You can compile Sim-SPR using Makefile technique, given by following commands:
 
@@ -65,7 +65,7 @@ $ make run
 ```
 $ make clean
 ```
-This command also clean hidden files, using rm -i .*
+> This command also clean hidden files, using rm -i .*
 ### To plot waveforms:
 ```
 $ gnuplot
