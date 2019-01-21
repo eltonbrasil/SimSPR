@@ -8,13 +8,13 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
 ## Characteristics:
 
 * Number of Layers: N layers;
-* Configuration: Kretschmann and Otto;
-* License: Open Source;
+* Configuration: Otto (a) and Kretschmann (b);
+* License: Open-Source;
 * Language: C++;
 * Operation: Angular Interrogation Mode (AIM).
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/47953522-a4860800-df5d-11e8-9d89-2d8bbd403478.png">
+  <img src="https://user-images.githubusercontent.com/25873978/51500991-58f23600-1db7-11e9-98a1-1cbae5c7e811.png">
 </p>
 
 ## Prerequisites:
