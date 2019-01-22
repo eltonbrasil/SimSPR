@@ -78,6 +78,20 @@ $ load 'out.gnu'
   <img src="https://user-images.githubusercontent.com/25873978/51502945-9a86df00-1dbf-11e9-889d-f02be6fefcd4.jpg">
 </p>
 
+## Sim-SPR Current Status and Future Improvements
+
+- [x] Angular Interrogation Mode
+- [x] Sensitivity Angular Interrogation Mode
+- [x] Kretschmann and Otto configurations
+- [x] Laser Light Source
+- [x] N layers
+- []  Wavelength Interrogation Mode
+- []  Sensitivity Wavelength Interrogation Mode
+- []  LED Light Source
+- []  SPR effect by Gratings and Optical Fiber
+- []  Anisotropy
+- []  Graphical Interface
+
 ## Author
 
 * **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
