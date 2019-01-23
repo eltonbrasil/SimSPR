@@ -166,7 +166,7 @@ int main (void){
     cout << endl;
 
     // ***
-    // Critical Angle
+    // Critical Angle and Resonant Angle
     // ***  
 
     cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[1], n_prism) << " degrees" <<endl;
