@@ -8,13 +8,13 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
 ## Characteristics:
 
 * Number of Layers: N layers;
-* Configuration: Kretschmann and Otto;
-* License: Open Source;
+* Configuration: Otto (a) and Kretschmann (b);
+* License: Open-Source;
 * Language: C++;
 * Operation: Angular Interrogation Mode (AIM).
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/47953522-a4860800-df5d-11e8-9d89-2d8bbd403478.png">
+  <img src="https://user-images.githubusercontent.com/25873978/51500991-58f23600-1db7-11e9-98a1-1cbae5c7e811.png">
 </p>
 
 ## Prerequisites:
@@ -24,40 +24,73 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
 * Git subversion;
 * GNUplot to plot waveforms.
 
-## Download Sim-SPR:
+## Getting Started (Download Sim-SPR):
 ```
 $ git clone https://github.com/eltonbrasil/SimSPR.git 
 ```
 
-## Running tests
+## Running Applications
 
 You can compile Sim-SPR using Makefile technique, given by following commands:
 
-### Go to testbench on Sim-SPR folder as:
+### First, go to testbench on Sim-SPR folder as:
 ```
 $ cd testbench
 ```
-### Do you need help?
+### If you need some help:
 ```
 $ make help
 ```
 ### To compile your testbench using G++ tools:
 ```
-$ make test
+$ make all
 ```
 ### To run your simulation:
 ```
 $ make run
 ```
+### After to run your simulation, you will be presented to the "Welcome to Sim-SPR", in which you can choose the SPR sensor configuration, presented as:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/51501474-2ba68780-1db9-11e9-8b65-65ef8cb1c15e.png">
+</p>
+
+### Also, you can configure the start incidence angle (line 16) in radians as well as the step-scale (line 20), both in the testbench file:
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/51501765-6361ff00-1dba-11e9-8eda-c3542fa904ed.png">
+</p>
+
 ### To clean unnecessary files:
 ```
 $ make clean
 ```
+> This command also clean hidden files, using rm -i .*
 ### To plot waveforms:
 ```
 $ gnuplot
 $ load 'out.gnu'
 ```
+
+## Full Sequence Diagram of the Sim-SPR
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/51502945-9a86df00-1dbf-11e9-889d-f02be6fefcd4.jpg">
+</p>
+
+## Sim-SPR Current Status and Future Improvements
+
+- [x] Angular Interrogation Mode
+- [x] Sensitivity Angular Interrogation Mode
+- [x] Kretschmann and Otto configurations
+- [x] Laser Light Source
+- [x] N layers
+- [ ] Wavelength Interrogation Mode
+- [ ] Sensitivity Wavelength Interrogation Mode
+- [ ] LED Light Source
+- [ ] SPR effect by Gratings and Optical Fiber
+- [ ] Anisotropy
+- [ ] Graphical Interface
 
 ## Author
 
