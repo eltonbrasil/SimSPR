@@ -7,8 +7,12 @@ help:
 	@echo "Type make all to compile your testbench using GCC tools linked to Octave"
 	@echo "If compilation is done, type make run"
 	@echo "If you want to clean, type make clean"
+	@echo "If you want to plot, type make plot then load 'out.gnu' "
 
 all: testbench
+
+plot:
+	gnuplot
 
 clean:
 	-rm testbench.o testbench
