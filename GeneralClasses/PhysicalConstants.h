@@ -3,6 +3,8 @@
 
 #define _USE_MATH_DEFINES
 
+#define PI 3.14159265
+
 class PhysicalConstants
 { 
 
