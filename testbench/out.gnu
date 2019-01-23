@@ -6,4 +6,4 @@ reset
 set xlabel "Incidence Angle (degrees)"
 set ylabel "Reflectance"
 
-plot "reflectance.txt" with lines
+plot "R_1.txt" with lines

@@ -2,24 +2,31 @@
 
 int main (void){
 
-    ofstream out_R;
-    out_R.open("reflectance.txt");
+    ofstream out_R_AIM;
+    out_R_AIM.open("R_1.txt");
 
-    double r_metal;             // Metal refractive index (real part)
-    double i_metal;             // Metal refractive index (imaginary part)
-    double d_metal;             // Layer thickness value (nm)
-    double n_prism; 		    // Prism refractive index
-    double n_d;                 // Absorptance spectrums
+    ofstream out_R_WIM;
+    out_R_WIM.open("R_2.txt");
 
-	double wavelength;		    // Incident wavelength
+    double r_metal;                 // Metal refractive index (real part)
+    double i_metal;                 // Metal refractive index (imaginary part)
+    double d_metal;                 // Layer thickness value (nm)
+    double n_prism; 		        // Prism refractive index
+    double n_analyte;               // Analyte refractive index
+	double wavelength;		        // Incident wavelength
     
-    double theta_i = 0.1745;    // Start Incident Angle (in radians)
+    double theta_i = 0.1745;        // Start Incident Angle (in radians)
+    double theta_spr;               // Resonant Angle for WIM mode
+    double d_wim;                   // Metal Layer thickness value (nm) for WIM mode
     
-    int N = 3;                  // Set number of Layers
+    int N = 3;                      // Set number of Layers
 
-    double step_scale = 0.001;  // Set the interval step scale 
+    double step_scale = 0.001;      // Set the step scale interval
+    double wave_step = 0.001;       // Set the wave step interval 
+    double start_wave = 1;          // Set the start wavelength
+    double end_wave = 1000;         // Set the end wavelength
 
-	int interface, choose;
+	int interface, choose, mode;
 
     double real[N], *r;
     r = &real[0]; 
@@ -48,52 +55,68 @@ int main (void){
 
     cout << "(1) Kretschmann-Raether" << endl;
     cout << "(2) Turbadar-Otto" << endl;
-    
+
     cin >> choose;
 
     cout << endl;
 
-    cout << "# Type the incident light wavelength (nm):" << endl;
-    cin >> wavelength;
+    cout << "# Choose the operation mode and type the respective number:" << endl << endl;
 
-    cout << "# Type the prism refractive index:" << endl;
-    cin >> n_prism;
+    cout << "(1) Angular Interrogation Mode (AIM)" << endl;
+    cout << "(2) Wavelength Interrogation Mode (WIM)" << endl;
 
-    for (interface = 1; interface < N; interface++){
+    cin >> mode;
 
-        cout << "Layer | Type the refractive index:" << endl;
-        cout << interface << "\t" << "Real part" << "\t\t:";
-        cin >> r_metal;
-        
-        cout << "Layer | Type the refractive index:" << endl;
-        cout << interface << "\t" << "Imaginary part" << "\t\t:";
-        cin >> i_metal;
+    cout << endl;
 
-        cout << "Layer | Type the layer thickness:" << endl;
-        cout << interface << "\t" << "Layer thickness" << "\t\t:";
-        cin >> d_metal;
+    // ***
+    // Angular Interrogation Mode (AIM)
+    // ***    
 
-        getchar();
+    if((choose == 1 || choose == 2) && mode ==1){
 
-        *(r+interface) = r_metal; 
-        *(i+interface) = i_metal; 
-        *(d+interface) = d_metal; 
+        cout << "# Type the incident light wavelength (nm):" << endl;
+        cin >> wavelength;
+
+        cout << "# Type the prism refractive index:" << endl;
+        cin >> n_prism;
+
+        for (interface = 1; interface < N; interface++){
+
+            cout << "Layer | Type the refractive index:" << endl;
+            cout << interface << "\t" << "Real part" << "\t\t:";
+            cin >> r_metal;
+            
+            cout << "Layer | Type the refractive index:" << endl;
+            cout << interface << "\t" << "Imaginary part" << "\t\t:";
+            cin >> i_metal;
+
+            cout << "Layer | Type the layer thickness:" << endl;
+            cout << interface << "\t" << "Layer thickness" << "\t\t:";
+            cin >> d_metal;
+
+            getchar();
+
+            *(r+interface) = r_metal; 
+            *(i+interface) = i_metal; 
+            *(d+interface) = d_metal; 
+        }
     }
 
     // ***
     // Kretschmann-Raether configuration
     // ***
 
-    if(choose == 1){
+    if (choose == 1){
     // Start timer
-    timer.start();
+        timer.start();
         while (theta_i <= 1.5707){                    
-            out_R << (theta_i * (180/M_PI)) << "\t\t" << KSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
+            out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << KSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
             theta_i = theta_i + step_scale; 
         }
     // stop timer
     timer.stop();
-    }
+    }    
 
     // ***
     // Turbadar-Otto configuration
@@ -102,16 +125,55 @@ int main (void){
     if(choose == 2){
     // Start timer
     timer.start();
-
         while (theta_i <= 1.5707){                    
-            out_R << (theta_i * (180/M_PI)) << "\t\t" << OttoSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
+            out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << OttoSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
             theta_i = theta_i + step_scale; 
         }
     // stop timer
     timer.stop();
-    }    
 
-    out_R.close();
+    }
+
+    // ***
+    // Wavelength Interrogation Mode (WIM)
+    // ***
+
+    if((choose == 1 || choose == 2) && mode == 2){
+
+        cout << "# Type the prism refractive index:" << endl;
+        cin >> n_prism;
+
+        cout << "# Type the analyte refractive index:" << endl;
+        cin >> n_analyte;
+
+        cout << "# Type the resonant angles (in degrees):" << endl;
+        cin >> theta_spr;
+
+        cout << "# Type the analyte thickness:" << endl;
+        cin >> d_wim;
+
+        // Start timer
+        timer.start();
+        while (start_wave <= end_wave){                    
+            out_R_WIM << start_wave << "\t\t" << wspr.Reflectance(start_wave, n_prism, n_analyte, theta_spr, d_wim) << endl;
+            start_wave = start_wave + wave_step; 
+        }
+        // stop timer
+        timer.stop();
+    }
+
+
+    cout << endl;
+
+    // ***
+    // Critical Angle
+    // ***  
+
+    cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[1], n_prism) << " degrees" <<endl;
+    cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[2], n_prism, real[1]) << " degrees" <<endl;
+
+    out_R_AIM.close();
+    out_R_WIM.close();
     
     return 0;
 }
