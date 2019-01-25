@@ -85,7 +85,7 @@ $ load 'out.gnu'
 - [x] Kretschmann and Otto configurations
 - [x] Laser Light Source
 - [x] N layers
-- [x] Wavelength Interrogation Mode
+- [ ] Wavelength Interrogation Mode
 - [ ] Sensitivity Wavelength Interrogation Mode
 - [ ] LED Light Source
 - [ ] SPR effect by Gratings and Optical Fiber
