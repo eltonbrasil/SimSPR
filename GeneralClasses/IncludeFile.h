@@ -25,6 +25,7 @@ using namespace std;
 #include "Timer.cpp"
 
 #include "../SPR/Kretschmann/K3Layers.h"
+#include "../SPR/Kretschmann/K4Layers.h"
 #include "../SPR/Otto/Otto3Layers.h"
 #include "../SPR/Otto/OttoW3Layers.h"
 #include "../SPR/Ressonance/CriticalAngle.h"
