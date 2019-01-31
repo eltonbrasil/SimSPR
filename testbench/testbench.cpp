@@ -15,11 +15,11 @@ int main (void){
     double n_analyte;               // Analyte refractive index
 	double wavelength;		        // Incident wavelength
     
-    double theta_i = 0.1745;        // Start Incident Angle (in radians)
+    double theta_i = 0.1745;        // Start Incident Angle (in radians -> 10 degrees)
     double theta_spr;               // Resonant Angle for WIM mode
     double d_wim;                   // Metal Layer thickness value (nm) for WIM mode
     
-    int N = 3;                      // Set number of Layers
+    int N;                          // Set number of Layers
 
     double step_scale = 0.001;      // Set the step scale interval
     double wave_step = 0.001;       // Set the wave step interval 
@@ -69,6 +69,12 @@ int main (void){
 
     cout << endl;
 
+    cout << "# How many layers: (3) or (4):" << endl;
+
+    cin >> N;
+
+    cout << endl;
+
     // ***
     // Angular Interrogation Mode (AIM)
     // ***    
@@ -108,14 +114,42 @@ int main (void){
     // ***
 
     if (choose == 1){
-    // Start timer
-        timer.start();
-        while (theta_i <= 1.5707){                    
-            out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << KSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
-            theta_i = theta_i + step_scale; 
+    
+        if (N == 3){
+            // Start timer
+            timer.start();
+            while (theta_i <= 1.5707){  // 90 in degrees                    
+                out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << KSpr.Reflectance(wavelength, n_prism, real[2], theta_i, real[1], imag[1], thickness[1]) << endl;
+                theta_i = theta_i + step_scale; 
+            }
+            // stop timer
+            timer.stop();
+
+            // ***
+            // Critical Angle and Resonant Angle
+            // ***  
+        
+            cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[2], n_prism) << " degrees" <<endl;
+            cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[1], n_prism, real[2]) << " degrees" <<endl;
         }
-    // stop timer
-    timer.stop();
+        if (N == 4){
+            // Start timer
+            timer.start();
+            while (theta_i <= 1.5707){  // 90 in degrees                    
+                out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << kre_4.Reflectance(theta_i, wavelength, n_prism, real[1], imag[1], real[2], imag[2], real[3], thickness[1], thickness[2]) << endl;
+                theta_i = theta_i + step_scale; 
+            }
+            // stop timer
+            timer.stop();
+
+            // ***
+            // Critical Angle and Resonant Angle
+            // ***  
+        
+            cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[3], n_prism) << " degrees" <<endl;
+            cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[2], n_prism, real[3]) << " degrees" <<endl;
+        }    
+
     }    
 
     // ***
@@ -125,12 +159,19 @@ int main (void){
     if(choose == 2){
     // Start timer
     timer.start();
-        while (theta_i <= 1.5707){                    
+        while (theta_i <= 1.5707){  // 90 in degrees                   
             out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << OttoSpr.Reflectance(wavelength, n_prism, real[1], theta_i, real[2], imag[2], thickness[1]) << endl;
             theta_i = theta_i + step_scale; 
         }
     // stop timer
     timer.stop();
+
+    // ***
+    // Critical Angle and Resonant Angle
+    // ***  
+    
+    cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[1], n_prism) << " degrees" <<endl;
+    cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[2], n_prism, real[1]) << " degrees" <<endl;
 
     }
 
@@ -164,13 +205,6 @@ int main (void){
 
 
     cout << endl;
-
-    // ***
-    // Critical Angle and Resonant Angle
-    // ***  
-
-    cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[1], n_prism) << " degrees" <<endl;
-    cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[2], n_prism, real[1]) << " degrees" <<endl;
 
     out_R_AIM.close();
     out_R_WIM.close();
