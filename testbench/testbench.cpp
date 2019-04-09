@@ -3,10 +3,7 @@
 int main (void){
 
     ofstream out_R_AIM;
-    out_R_AIM.open("R_1.txt");
-
-    ofstream out_R_WIM;
-    out_R_WIM.open("R_2.txt");
+    out_R_AIM.open("reflectance.dat");
 
     double r_metal;                 // Metal refractive index (real part)
     double i_metal;                 // Metal refractive index (imaginary part)
@@ -19,14 +16,11 @@ int main (void){
     double theta_spr;               // Resonant Angle for WIM mode
     double d_wim;                   // Metal Layer thickness value (nm) for WIM mode
     
-    int N;                          // Set number of Layers
+    int N = 3;                      // Set number of Layers
 
     double step_scale = 0.001;      // Set the step scale interval
-    double wave_step = 0.001;       // Set the wave step interval 
-    double start_wave = 1;          // Set the start wavelength
-    double end_wave = 1000;         // Set the end wavelength
-
-	int interface, choose, mode;
+    
+	int interface, choose;
 
     double real[N], *r;
     r = &real[0]; 
@@ -60,26 +54,11 @@ int main (void){
 
     cout << endl;
 
-    cout << "# Choose the operation mode and type the respective number:" << endl << endl;
-
-    cout << "(1) Angular Interrogation Mode (AIM)" << endl;
-    cout << "(2) Wavelength Interrogation Mode (WIM)" << endl;
-
-    cin >> mode;
-
-    cout << endl;
-
-    cout << "# How many layers: (3) or (4):" << endl;
-
-    cin >> N;
-
-    cout << endl;
-
     // ***
     // Angular Interrogation Mode (AIM)
     // ***    
 
-    if((choose == 1 || choose == 2) && mode ==1){
+    if(choose == 1 || choose == 2){
 
         cout << "# Type the incident light wavelength (nm):" << endl;
         cin >> wavelength;
@@ -119,7 +98,7 @@ int main (void){
             // Start timer
             timer.start();
             while (theta_i <= 1.5707){  // 90 in degrees                    
-                out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << KSpr.Reflectance(wavelength, n_prism, real[2], theta_i, real[1], imag[1], thickness[1]) << endl;
+                out_R_AIM << (theta_i * (180/M_PI)) << "\t\t" << kre_3.Reflectance(wavelength, n_prism, real[2], theta_i, real[1], imag[1], thickness[1]) << endl;
                 theta_i = theta_i + step_scale; 
             }
             // stop timer
@@ -175,39 +154,9 @@ int main (void){
 
     }
 
-    // ***
-    // Wavelength Interrogation Mode (WIM)
-    // ***
-
-    if((choose == 1 || choose == 2) && mode == 2){
-
-        cout << "# Type the prism refractive index:" << endl;
-        cin >> n_prism;
-
-        cout << "# Type the analyte refractive index:" << endl;
-        cin >> n_analyte;
-
-        cout << "# Type the resonant angles (in degrees):" << endl;
-        cin >> theta_spr;
-
-        cout << "# Type the analyte thickness:" << endl;
-        cin >> d_wim;
-
-        // Start timer
-        timer.start();
-        while (start_wave <= end_wave){                    
-            out_R_WIM << start_wave << "\t\t" << wspr.Reflectance(start_wave, n_prism, n_analyte, theta_spr, d_wim) << endl;
-            start_wave = start_wave + wave_step; 
-        }
-        // stop timer
-        timer.stop();
-    }
-
-
     cout << endl;
 
     out_R_AIM.close();
-    out_R_WIM.close();
-    
+        
     return 0;
 }
