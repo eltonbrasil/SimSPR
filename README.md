@@ -62,7 +62,7 @@ $ make clean
 > This command also clean hidden files, using rm -i .*
 ### To plot waveforms:
 ```
-$ make plot
+$ gnuplot
 $ load 'out.gnu'
 ```
 
