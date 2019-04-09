@@ -43,7 +43,7 @@ $ make help
 ```
 ### To compile your testbench using G++ tools:
 ```
-$ make all
+$ make test
 ```
 ### To run your simulation:
 ```
@@ -55,12 +55,6 @@ $ make run
   <img src="https://user-images.githubusercontent.com/25873978/51501474-2ba68780-1db9-11e9-8b65-65ef8cb1c15e.png">
 </p>
 
-### Also, you can configure the start incidence angle (line 16) in radians as well as the step-scale (line 20), both in the testbench file:
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/51501765-6361ff00-1dba-11e9-8eda-c3542fa904ed.png">
-</p>
-
 ### To clean unnecessary files:
 ```
 $ make clean
@@ -68,7 +62,7 @@ $ make clean
 > This command also clean hidden files, using rm -i .*
 ### To plot waveforms:
 ```
-$ make plot
+$ gnuplot
 $ load 'out.gnu'
 ```
 
