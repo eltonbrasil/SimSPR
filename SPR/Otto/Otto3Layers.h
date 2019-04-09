@@ -17,7 +17,7 @@ class Otto3Layers{
 double Otto3Layers::Reflectance(double wavelength, double n_p, double n_analyte, double theta_i, double n3_r, double n3_i, double d){
 
 	// ***
-	// Initializing parameters based on input
+	// Initializing parameters based as input
 	// ***
 
 	K0 = (2*M_PI) / (wavelength * pow(10,-9));
@@ -70,22 +70,18 @@ double Otto3Layers::Reflectance(double wavelength, double n_p, double n_analyte,
 	}		
 
 	// ***
-	// Calculation of first layer terms layer
+	// Calculation of first layer terms
 	// ***
 
 	Complex Z1 = Complex (q1 / (omega * pow(index1,2)));
 
 	// ***
-	// Calculation of second layer terms layer
+	// Calculation of second layer terms
 	// ***
 
 	Complex Z2 = Complex (q2 / (omega * pow(index2,2)));
 
 	Complex qprod = Complex (thickness * q2);
-
-	// ***
-	// Calculation of second layer terms layer
-	// ***
 
 	Complex A = Complex (cos(qprod));
 	Complex B = Complex (sin(qprod) * (im_number * Z2));
@@ -93,7 +89,7 @@ double Otto3Layers::Reflectance(double wavelength, double n_p, double n_analyte,
 	Complex D = Complex (cos(qprod));
 
 	// ***
-	// Calculation of third layer terms layer
+	// Calculation of third layer terms
 	// ***
 
 	Complex Z3 = Complex (q3 / (omega * pow(index3,2)));

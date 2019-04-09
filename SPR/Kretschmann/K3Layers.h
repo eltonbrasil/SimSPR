@@ -71,13 +71,13 @@ double K3Layers::Reflectance(double wavelength, double n_p, double n_analyte, do
 	}		
 
 	// ***
-	// Calculation of first layer terms layer
+	// Calculation of first layer terms
 	// ***
 
 	Complex Z1 = Complex (q1 / (omega * pow(index1,2)));
 
 	// ***
-	// Calculation of second layer terms layer
+	// Calculation of second layer terms
 	// ***
 
 	Complex Z2 = Complex (q2 / (omega * pow(index2,2)));
@@ -85,7 +85,7 @@ double K3Layers::Reflectance(double wavelength, double n_p, double n_analyte, do
 	Complex qprod = Complex (thickness * q2);
 
 	// ***
-	// Calculation of second layer terms layer
+	// Calculation of second layer terms
 	// ***
 
 	Complex A = Complex (cos(qprod));
@@ -94,7 +94,7 @@ double K3Layers::Reflectance(double wavelength, double n_p, double n_analyte, do
 	Complex D = Complex (cos(qprod));
 
 	// ***
-	// Calculation of third layer terms layer
+	// Calculation of third layer terms
 	// ***
 
 	Complex Z3 = Complex (q3 / (omega * pow(index3,2)));
