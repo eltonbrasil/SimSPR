@@ -62,7 +62,7 @@ int main (void){
 
     if(choose == 1 || choose == 2){
 
-        cout << "# Type the incident light wavelength (nm):" << endl;
+        cout << "# Type the incident light wavelength [nm]:" << endl;
         cin >> wavelength;
 
         cout << "# Type the prism refractive index:" << endl;
@@ -78,7 +78,7 @@ int main (void){
             cout << interface << "\t" << "Imaginary part" << "\t\t:";
             cin >> i_metal;
 
-            cout << "Layer | Type the layer thickness:" << endl;
+            cout << "Layer | Type the layer thickness [nm]:" << endl;
             cout << interface << "\t" << "Layer thickness" << "\t\t:";
             cin >> d_metal;
 
