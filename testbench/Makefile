@@ -1,4 +1,4 @@
-# Elton B. Costa, January 21, 2019
+# Elton B. Costa, April 9th, 2019
 # A fairly simple GCC Makefile linked with Octave
 
 help:
@@ -6,9 +6,6 @@ help:
 	@echo "If compilation is done, type make run"
 	@echo "If you want to clean, type make clean"
 	
-# Default target
-all: spr_curve.png
-
 # Main program target
 test:
 	mkoctfile testbench.cpp --link-stand-alone -o testbench
@@ -16,10 +13,6 @@ test:
 # Simulation target
 run:
 	./testbench
-
-# Output figure (.png)
-spr_curve.png : out.gnu reflectance.dat
-	gnuplot -e 'set terminal png size 800,700' $< > $@
 
 # Remove generated files
 clean:
