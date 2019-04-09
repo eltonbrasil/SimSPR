@@ -64,7 +64,7 @@ $ make clean
 ## Full Sequence Diagram of the Sim-SPR
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/51502945-9a86df00-1dbf-11e9-889d-f02be6fefcd4.jpg">
+  <img src="https://github.com/eltonbrasil/SimSPR/issues/9#issue-431166041">
 </p>
 
 ## Sim-SPR Current Status and Future Improvements
