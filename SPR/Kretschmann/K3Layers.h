@@ -12,7 +12,7 @@ class K3Layers{
 	
 		double Reflectance(double, double, double, double, double, double, double);
 	
-}KSpr;
+}kre_3;
 
 
 double K3Layers::Reflectance(double wavelength, double n_p, double n_analyte, double theta_i, double n2_r, double n2_i, double d){
