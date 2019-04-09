@@ -17,5 +17,4 @@ run:
 # Remove generated files
 clean:
 	rm -f testbench.o 
-	rm -f testbench
-	
+	rm -f testbench	

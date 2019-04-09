@@ -18,7 +18,7 @@ int main (void){
     
     double theta_i = 0.1745;        // Start Incident Angle (in radians -> 10 degrees)
         
-    unsigned int N = 3;             // Set number of Layers
+    unsigned int N = 3;             // Set number of layers
 
     double step_scale = 0.001;      // Set the step scale interval
     
@@ -113,24 +113,7 @@ int main (void){
             cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[2], n_prism) << " degrees" <<endl;
             cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[1], n_prism, real[2]) << " degrees" <<endl;
         }
-        if (N == 4){
-            // Start timer
-            timer.start();
-            while (theta_i <= 1.5707){  // 90 in degrees                    
-                out << (theta_i * (180/M_PI)) << "\t\t" << kre_4.Reflectance(theta_i, wavelength, n_prism, real[1], imag[1], real[2], imag[2], real[3], thickness[1], thickness[2]) << endl;
-                theta_i = theta_i + step_scale; 
-            }
-            // stop timer
-            timer.stop();
-
-            // ***
-            // Critical Angle and Resonant Angle
-            // ***  
         
-            cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[3], n_prism) << " degrees" <<endl;
-            cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[2], n_prism, real[3]) << " degrees" <<endl;
-        }    
-
     }    
 
     // ***
@@ -160,7 +143,6 @@ int main (void){
     // An user C code can also activate gnuplot and pipe a gnuplot script into it. 
     // ***
 
-    fprintf(fp, "set size ratio 0.5 \n");
     fprintf(fp, "set title  \'SPR Curve\'\n" );
     fprintf(fp, "set xlabel \'Incidence Angle (degrees)\'\n" );
     fprintf(fp, "set ylabel \'Reflectance\'\n" );
