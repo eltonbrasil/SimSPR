@@ -60,11 +60,6 @@ $ make run
 $ make clean
 ```
 > This command also clean hidden files, using rm -i .*
-### To plot waveforms:
-```
-$ gnuplot
-$ load 'out.gnu'
-```
 
 ## Full Sequence Diagram of the Sim-SPR
 
