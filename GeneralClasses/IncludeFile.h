@@ -26,5 +26,6 @@ using namespace std;
 
 #include "../SPR/Kretschmann/K3Layers.h"
 #include "../SPR/Otto/Otto3Layers.h"
+#include "../SPR/Fiber/OpticalFiber.h"
 #include "../SPR/Ressonance/CriticalAngle.h"
 #include "../SPR/Ressonance/ResonantAngle.h"
