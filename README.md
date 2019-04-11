@@ -17,7 +17,9 @@ We present our free, open-source simulator for Surface Plasmon Resonance (SPR) a
   <img src="https://user-images.githubusercontent.com/25873978/51500991-58f23600-1db7-11e9-98a1-1cbae5c7e811.png">
 </p>
 
-
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/25873978/55975343-c8115500-5c57-11e9-978e-ba597d807e35.png">
+</p>
 
 ## Prerequisites:
 
