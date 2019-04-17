@@ -68,18 +68,17 @@ $ make clean
 ## Full Sequence Diagram of the Sim-SPR
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/55831486-31228c80-5ae1-11e9-8c0c-e1b13339d84a.png">
+  <img src="https://user-images.githubusercontent.com/25873978/56314752-eed1fe80-6123-11e9-8f78-4726654d7df6.png">
 </p>
 
 ## Sim-SPR Current Status and Future Improvements
 
-- [x] Angular Interrogation Mode
-- [x] Sensitivity Angular Interrogation Mode
 - [x] Kretschmann and Otto configurations
 - [X] Optical Fiber
 - [x] Laser Light Source
 - [x] N layers
-- [ ] Wavelength Interrogation Mode
+- [x] Angular Interrogation Mode: Kretschmann, Otto and optical fiber configurations
+- [x] Wavelength Interrogation Mode: only for optical fiber using gold as metal layer
 - [ ] Sensitivity Wavelength Interrogation Mode
 - [ ] LED Light Source
 - [ ] Anisotropy
