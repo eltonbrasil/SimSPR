@@ -53,11 +53,7 @@ $ make test
 ```
 $ make run
 ```
-### After to run your simulation, you will be presented to the "Welcome to Sim-SPR", in which you can choose the SPR sensor configuration, presented as:
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/25873978/55974570-efffb900-5c55-11e9-9978-1d02ba00ec02.png">
-</p>
+> After to run your simulation, you will be presented to the "Welcome to Sim-SPR", in which you can choose the SPR sensor configuration.
 
 ### To clean unnecessary files:
 ```
@@ -79,6 +75,7 @@ $ make clean
 - [x] N layers
 - [x] Angular Interrogation Mode: Kretschmann, Otto and optical fiber configurations
 - [x] Wavelength Interrogation Mode: only for optical fiber using gold as metal layer
+- [x] Sensitivity Angular Interrogation Mode
 - [ ] Sensitivity Wavelength Interrogation Mode
 - [ ] LED Light Source
 - [ ] Anisotropy
@@ -88,4 +85,3 @@ $ make clean
 
 * **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
 * Contact: elton.costa@ee.ufcg.edu.br
-
