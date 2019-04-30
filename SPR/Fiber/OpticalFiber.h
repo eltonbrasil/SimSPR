@@ -10,9 +10,34 @@ public:
 	double Reflectance(double, double, double, double, double, double, double, double, double);
 	double n_gold(double);
 	double k_gold(double);
+	double n_graphene(double);
+	double k_graphene(double);
 	double ReflectanceWIM(double, double, double, double, double, double, double, double, double);
 
 }fiber_spr;
+
+double OpticalFiber::n_graphene(double wavelength){
+	
+	// ***
+	// Graphene refractive Index (n) for each wavelength
+	// ***
+
+	n = 3;
+
+	return(n);
+}
+
+double OpticalFiber::k_graphene(double wavelength){
+	
+    // ***
+	// Graphene extinction coefficient (k) for each wavelength
+	// ***
+
+	double wave = wavelength * pow(10,9);
+	k = ((5.446*wave*pow(10,-6))/3);
+
+	return(n);
+}
 
 double OpticalFiber::n_gold(double wavelength){
 
