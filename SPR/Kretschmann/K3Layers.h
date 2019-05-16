@@ -11,7 +11,7 @@ class K3Layers{
 	public:	
 	
 		double Reflectance(double, double, double, double, double, double, double);
-	
+			
 }kre_3;
 
 
