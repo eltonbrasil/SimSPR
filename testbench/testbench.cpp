@@ -24,7 +24,7 @@ int main (void){
     double theta_spr;               // Resonant Angle for WIM operation mode
     double n, k;                    // Refractive Index Coefficients
         
-    unsigned int N = 3;             // Set number of layers
+    unsigned int N = 4;             // Set number of layers
     
     double step_scale = 0.001;      // Set the step scale interval
 
@@ -67,14 +67,25 @@ int main (void){
     // Angular Interrogation Mode (AIM)
     // ***    
 
-    if(choose == 1 || choose == 2){
+    if(choose == 1){
+
+        cout << "# Angular Interrogation (1) or Wavelength Interrogation (2):" << endl;
+        cin >> mode;
+
+        cout << "# Type the incident light wavelength [nm]:" << endl;
+        cin >> wavelength;
+
+        cout << "# Type the prism refractive index:" << endl;
+        cin >> n_prism;                    
+    }
+
+    if(choose == 2){
 
         cout << "# Type the incident light wavelength [nm]:" << endl;
         cin >> wavelength;
 
         cout << "# Type the prism refractive index:" << endl;
         cin >> n_prism;
-
     }
 
     if (choose == 3){
@@ -89,7 +100,7 @@ int main (void){
             cout << "# Type the silica refractive index:" << endl;
             cin >> n_silica;
 
-            cout << "# Type the silica layer thickness [nm]:" << endl;
+            cout << "# Type the silica layer thickness [um]:" << endl;
             cin >> d_silica;
         }
         if(mode == 2){
@@ -108,14 +119,14 @@ int main (void){
             cout << "# Type the analyte refractive index:" << endl;
             cin >> n_analyte;
 
-            cout << "# Type the silica layer thickness [nm]:" << endl;
+            cout << "# Type the analyte layer thickness [nm]:" << endl;
             cin >> d_analyte;
 
         }       
 
     }
 
-    if(choose == 1 || choose == 2){
+    if((choose == 1 || choose == 2) || (choose == 3 && mode == 1)) {
         for (interface = 1; interface < N; interface++){
 
             cout << "Layer | Type the refractive index:" << endl;
@@ -143,27 +154,16 @@ int main (void){
     // ***
 
     if (choose == 1){
-    
-        if (N == 3){
-            // Start timer
-            timer.start();
-            while (theta_i <= 1.5707){  // 90 in degrees                    
-                out << (theta_i * (180/M_PI)) << "\t\t" << kre_3.Reflectance(wavelength, n_prism, real[2], theta_i, real[1], imag[1], thickness[1]) << endl;
-                theta_i += step_scale; 
+        if (N == 3){            
+            if(mode == 1){           
+                while (theta_i <= 1.5707){  // 90 in degrees                    
+                    out << (theta_i * (180/M_PI)) << "\t\t" << kre_3.Reflectance(wavelength, n_prism, real[2], theta_i, real[1], imag[1], thickness[1]) << endl;
+                    theta_i += step_scale; 
+                }
             }
-            // stop timer
-            timer.stop();
-
-            // ***
-            // Critical Angle and Resonant Angle
-            // ***  
-        
-            cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[2], n_prism) << " degrees" <<endl;
-            cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[1], n_prism, real[2]) << " degrees" <<endl;
         }
-        
-    }    
-
+    }
+    
     // ***
     // Turbadar-Otto configuration
     // ***
@@ -177,14 +177,7 @@ int main (void){
         }
     // stop timer
     timer.stop();
-
-    // ***
-    // Critical Angle and Resonant Angle
-    // ***  
-    
-    cout << "The critical angle for this SPR configuration is: " << c_spr.TIR(real[1], n_prism) << " degrees" <<endl;
-    cout << "The resonant angle for this SPR configuration is: " << t_spr.SPR_Angle(real[2], n_prism, real[1]) << " degrees" <<endl;
-   
+ 
     }
 
     // ***
@@ -192,29 +185,33 @@ int main (void){
     // ***
 
     if(choose == 3){
-        if(mode == 1){
-        // Start timer
-        timer.start();
+        if(mode == 1 & N == 3){
             while (theta_i <= 1.5707){  // 90 in degrees                   
                 out << (theta_i * (180/M_PI)) << "\t\t" << fiber_spr.Reflectance(theta_i, wavelength, n_silica, d_silica, real[1], imag[1], thickness[1], real[2], thickness[2]) << endl;
                 theta_i += step_scale; 
             }
-        // stop timer
-        timer.stop();
         }
+
+        if(mode == 1 & N == 4){
+            while (theta_i <= 1.5707){  // 90 in degrees                   
+                out << (theta_i * (180/M_PI)) << "\t\t" << fiber_spr.Reflectance_4L(theta_i, wavelength, n_silica, d_silica, real[1], imag[1], thickness[1], real[2], imag[2], thickness[2], real[3], thickness[3]) << endl;
+                theta_i += step_scale; 
+            }
+        }
+
         if(mode == 2){
         
         theta_spr = (M_PI/180)*theta_i;
-        double start_wave =  0  * pow (10,-9);
-        double end_wave   =  1200 * pow (10,-9);
+        double start_wave =  0 * pow (10,-9);
+        double end_wave   =  400 * pow (10,-9);
         double step_wave  =  pow(10,-9);
 
         // Start timer
         timer.start();
             while (start_wave <= end_wave){
 
-                n = fiber_spr.n_gold(start_wave);
-                k = fiber_spr.k_gold(start_wave);
+                n = metal.n_graphene(start_wave);
+                k = metal.k_graphene(start_wave);
                 
                 out << start_wave * pow (10,9) << "\t\t" << fiber_spr.ReflectanceWIM(theta_spr, start_wave, n_silica, d_silica, n, k, d_au, n_analyte, d_analyte) << endl;
                 start_wave += step_wave;
@@ -230,7 +227,7 @@ int main (void){
     // An user C code can also activate gnuplot and pipe a gnuplot script into it. 
     // ***
 
-    if(choose == 1 || choose == 2 || (choose == 3 & mode == 1)){
+    if((choose == 1 || choose == 2) || (choose == 3 & mode == 1)){
 
         fprintf(fp, "set title  \'SPR Curve\'\n" );
         fprintf(fp, "set xlabel \'Incidence Angle (degrees)\'\n" );
