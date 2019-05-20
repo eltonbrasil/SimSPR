@@ -4,14 +4,27 @@ class OpticalFiber{
 
 private:
 	typedef std::complex<double> Complex; 		// Standard complex data type
-	double R, K0, d0, d1, d2, d3;
+	double R, K0, d0, d1, d2, d3, r_core;
 
 public:
 	double Reflectance(double, double, double, double, double, double, double, double, double);
+	double Transmission(double, double, double, double);
 	double Reflectance_4L(double, double, double, double, double, double, double, double, double, double, double, double);
 	double ReflectanceWIM(double, double, double, double, double, double, double, double, double);
 
 }fiber_spr;
+
+double OpticalFiber::Transmission(double theta_i, double d, double R, double L){
+
+	r_core = (d*pow(10,-6))/2;
+
+	double aux = (L/r_core)*tan(theta_i); 
+
+	double T = pow(R,aux);
+
+	return (T);
+
+}
 
 double OpticalFiber::Reflectance(double theta_i, double wavelength, double n_p, double d_silica, double eps_r, double eps_i, double d_metal, double n_a, double d_a){
 
@@ -214,7 +227,7 @@ double OpticalFiber::ReflectanceWIM(double theta_spr, double wavelength, double 
 	d1 = d_metal  * pow(10,-9);
 	d2 = d_a      * pow(10,-9);
 
-	Complex n_0      = Complex (n_si,0);
+	Complex n_0     = Complex (n_si,0);
 	Complex n_metal = Complex (n,k);
 	Complex na      = Complex (n_a,0);
 
@@ -222,7 +235,7 @@ double OpticalFiber::ReflectanceWIM(double theta_spr, double wavelength, double 
 	// Phase Factor (delta) for each layer
 	// ***
 
-	Complex delta_0 = K0 * d0 * Complex (sqrt(pow(n_0,2)      - pow(n_0,2)*pow(sin(theta_spr),2)));
+	Complex delta_0 = K0 * d0 * Complex (sqrt(pow(n_0,2)     - pow(n_0,2)*pow(sin(theta_spr),2)));
 	Complex delta_1 = K0 * d1 * Complex (sqrt(pow(n_metal,2) - pow(n_0,2)*pow(sin(theta_spr),2)));
 	Complex delta_2 = K0 * d2 * Complex (sqrt(pow(na,2)      - pow(n_0,2)*pow(sin(theta_spr),2)));
 
