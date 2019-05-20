@@ -3,7 +3,7 @@
 int main (void){
 
     ofstream out;
-    out.open("reflectance.dat");
+    out.open("data.dat");
 
     FILE *fp;
 
@@ -19,12 +19,15 @@ int main (void){
     double n_analyte;               // Analyte refractive index
     double n_silica;                // Silica refractive index
 	double wavelength;		        // Incident wavelength
-
-    double theta_i = 0.1745;        // Start Incident Angle (in radians -> 10 degrees)
+    double R_AIM;                   // Angular Reflectance Variable
+    double R_WIM;                   // Wavelength Reflectance Variable
+    double T_AIM;                   // Angular Transmission Intensity Variable
+    double L;                       // Length of the exposed sensing region
+    double theta_i = 0;             // Start Incident Angle (in radians -> 10 degrees)
     double theta_spr;               // Resonant Angle for WIM operation mode
     double n, k;                    // Refractive Index Coefficients
         
-    unsigned int N = 4;             // Set number of layers
+    unsigned int N = 3;             // Set number of layers
     
     double step_scale = 0.001;      // Set the step scale interval
 
@@ -184,17 +187,22 @@ int main (void){
     // Optical Fiber configuration
     // ***
 
+    L = 20*pow(10,-3);
+
     if(choose == 3){
         if(mode == 1 & N == 3){
-            while (theta_i <= 1.5707){  // 90 in degrees                   
-                out << (theta_i * (180/M_PI)) << "\t\t" << fiber_spr.Reflectance(theta_i, wavelength, n_silica, d_silica, real[1], imag[1], thickness[1], real[2], thickness[2]) << endl;
+            while (theta_i <= 1.5707){  // 90 in degrees 
+                R_AIM = fiber_spr.Reflectance (theta_i, wavelength, n_silica, d_silica, real[1], imag[1], thickness[1], real[2], thickness[2]); 
+                T_AIM = fiber_spr.Transmission(theta_i, d_silica, R_AIM, L);   
+                out << (theta_i * (180/M_PI)) << "\t\t" << R_AIM << "\t\t" << T_AIM << endl;
                 theta_i += step_scale; 
             }
         }
 
         if(mode == 1 & N == 4){
-            while (theta_i <= 1.5707){  // 90 in degrees                   
-                out << (theta_i * (180/M_PI)) << "\t\t" << fiber_spr.Reflectance_4L(theta_i, wavelength, n_silica, d_silica, real[1], imag[1], thickness[1], real[2], imag[2], thickness[2], real[3], thickness[3]) << endl;
+            while (theta_i <= 1.5707){  // 90 in degrees  
+                R_AIM = fiber_spr.Reflectance_4L(theta_i, wavelength, n_silica, d_silica, real[1], imag[1], thickness[1], real[2], imag[2], thickness[2], real[3], thickness[3]);              
+                out << (theta_i * (180/M_PI)) << "\t\t" << R_AIM << endl;
                 theta_i += step_scale; 
             }
         }
@@ -202,18 +210,19 @@ int main (void){
         if(mode == 2){
         
         theta_spr = (M_PI/180)*theta_i;
-        double start_wave =  0 * pow (10,-9);
-        double end_wave   =  400 * pow (10,-9);
+        double start_wave =  440 * pow (10,-9);
+        double end_wave   =  800 * pow (10,-9);
         double step_wave  =  pow(10,-9);
 
         // Start timer
         timer.start();
             while (start_wave <= end_wave){
 
-                n = metal.n_graphene(start_wave);
-                k = metal.k_graphene(start_wave);
+                n = metal.n_gold(start_wave);
+                k = metal.k_gold(start_wave);
+                R_WIM = fiber_spr.ReflectanceWIM(theta_spr, start_wave, n_silica, d_silica, n, k, d_au, n_analyte, d_analyte);
                 
-                out << start_wave * pow (10,9) << "\t\t" << fiber_spr.ReflectanceWIM(theta_spr, start_wave, n_silica, d_silica, n, k, d_au, n_analyte, d_analyte) << endl;
+                out << start_wave * pow (10,9) << "\t\t" << R_WIM << endl;
                 start_wave += step_wave;
             }
 
@@ -227,21 +236,29 @@ int main (void){
     // An user C code can also activate gnuplot and pipe a gnuplot script into it. 
     // ***
 
-    if((choose == 1 || choose == 2) || (choose == 3 & mode == 1)){
-
+    if(choose == 1 || choose == 2){
         fprintf(fp, "set title  \'SPR Curve\'\n" );
         fprintf(fp, "set xlabel \'Incidence Angle (degrees)\'\n" );
         fprintf(fp, "set ylabel \'Reflectance\'\n" );
         fprintf(fp, "set grid \n");     
-        fprintf(fp, "plot \'reflectance.dat\' using 1:2 with lines \n");
+        fprintf(fp, "plot \'data.dat\' using 1:2 with lines \n");
     }
+
+    if(choose == 3 & mode == 1){
+        fprintf(fp, "set title  \'SPR Curve\'\n" );
+        fprintf(fp, "set xlabel \'Incidence Angle (degrees)\'\n" );
+        fprintf(fp, "set ylabel \'Intensity\'\n" );
+        fprintf(fp, "set grid \n");     
+        fprintf(fp, "plot \'data.dat\' using 1:2 with lines, \'data.dat\' using 1:3 with points \n");
+    }
+
     if(choose == 3 & mode == 2){
 
         fprintf(fp, "set title  \'SPR Curve\'\n" );
         fprintf(fp, "set xlabel \'Wavelength (nm)\'\n" );
         fprintf(fp, "set ylabel \'Reflectance\'\n" );
         fprintf(fp, "set grid \n");     
-        fprintf(fp, "plot \'reflectance.dat\' using 1:2 with lines \n");
+        fprintf(fp, "plot \'data.dat\' using 1:2 with lines \n");
     }
     fflush (fp);
     pclose(fp);
