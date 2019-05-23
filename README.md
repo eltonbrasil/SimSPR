@@ -81,6 +81,10 @@ $ make clean
 - [ ] Anisotropy
 - [ ] Graphical Interface
 
+## Sim-SPR
+
+For more details, please refer to our article: [Sim-SPR: an Open-Source Surface Plasmon Resonance Simulator for Academic and Industrial Purposes](https://link.springer.com/article/10.1007%2Fs11468-019-00970-5)
+
 ## Author
 
 * **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
