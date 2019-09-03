@@ -87,5 +87,7 @@ For more details, please refer to our article: [Sim-SPR: an Open-Source Surface 
 
 ## Author
 
-* **Elton Brasil da Costa** - [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
+* **Elton Brasil da Costa**
+* [Curriculum Lattes (Portuguese)](http://buscatextual.cnpq.br/buscatextual/visualizacv.do?id=K4459901A6)
+* [Linkedin](https://www.linkedin.com/in/eltonbrasil/)
 * Contact: elton.costa@ee.ufcg.edu.br
